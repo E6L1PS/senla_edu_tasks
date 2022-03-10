@@ -1914,7 +1914,7 @@
 											"width": 108.748046875,
 											"height": 13,
 											"underline": true,
-											"text": "+WIDTH: int",
+											"text": "+width: int",
 											"horizontalAlignment": 0
 										},
 										{
@@ -1932,7 +1932,7 @@
 											"width": 108.748046875,
 											"height": 13,
 											"underline": true,
-											"text": "+HEIGHT: int",
+											"text": "+height: int",
 											"horizontalAlignment": 0
 										},
 										{
@@ -1950,7 +1950,7 @@
 											"width": 108.748046875,
 											"height": 13,
 											"underline": true,
-											"text": "+SIZE: int",
+											"text": "+size: int",
 											"horizontalAlignment": 0
 										},
 										{
@@ -1968,7 +1968,7 @@
 											"width": 108.748046875,
 											"height": 13,
 											"underline": true,
-											"text": "+BACK: Color",
+											"text": "+back: Color",
 											"horizontalAlignment": 0
 										},
 										{
@@ -1986,7 +1986,7 @@
 											"width": 108.748046875,
 											"height": 13,
 											"underline": true,
-											"text": "+FLYF: Color",
+											"text": "+flyf: Color",
 											"horizontalAlignment": 0
 										},
 										{
@@ -2004,7 +2004,7 @@
 											"width": 108.748046875,
 											"height": 13,
 											"underline": true,
-											"text": "+LAND: Color",
+											"text": "+land: Color",
 											"horizontalAlignment": 0
 										}
 									],
@@ -2771,9 +2771,9 @@
 										"$ref": "AAAAAAF/YV1v4Ich+aI="
 									},
 									"font": "Arial;13;0",
-									"left": 826,
+									"left": 825,
 									"top": 388,
-									"width": 5.05908203125,
+									"width": 6.5,
 									"height": 13,
 									"alpha": -0.5235987755982988,
 									"distance": 25,
@@ -7503,7 +7503,8 @@
 							"_parent": {
 								"$ref": "AAAAAAF/YSs8d4TcMqM="
 							},
-							"name": "d"
+							"name": "d",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -7512,7 +7513,8 @@
 								"$ref": "AAAAAAF/YSs8d4TcMqM="
 							},
 							"name": "I",
-							"visibility": "package"
+							"visibility": "package",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -7521,7 +7523,8 @@
 								"$ref": "AAAAAAF/YSs8d4TcMqM="
 							},
 							"name": "J",
-							"visibility": "package"
+							"visibility": "package",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -7530,7 +7533,8 @@
 								"$ref": "AAAAAAF/YSs8d4TcMqM="
 							},
 							"name": "L",
-							"visibility": "package"
+							"visibility": "package",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -7539,7 +7543,8 @@
 								"$ref": "AAAAAAF/YSs8d4TcMqM="
 							},
 							"name": "O",
-							"visibility": "package"
+							"visibility": "package",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -7548,7 +7553,8 @@
 								"$ref": "AAAAAAF/YSs8d4TcMqM="
 							},
 							"name": "S",
-							"visibility": "package"
+							"visibility": "package",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -7557,7 +7563,8 @@
 								"$ref": "AAAAAAF/YSs8d4TcMqM="
 							},
 							"name": "T",
-							"visibility": "package"
+							"visibility": "package",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -7566,7 +7573,8 @@
 								"$ref": "AAAAAAF/YSs8d4TcMqM="
 							},
 							"name": "Z",
-							"visibility": "package"
+							"visibility": "package",
+							"type": ""
 						},
 						{
 							"_type": "UMLAttribute",
@@ -7638,7 +7646,8 @@
 									"_parent": {
 										"$ref": "AAAAAAF/Ybn0WxPmWAc="
 									},
-									"name": "int coords"
+									"name": "int coords",
+									"type": ""
 								}
 							]
 						},
@@ -8232,7 +8241,8 @@
 									"_parent": {
 										"$ref": "AAAAAAF/YWUVBIkiyko="
 									},
-									"name": "int color"
+									"name": "int color",
+									"type": ""
 								}
 							]
 						},
@@ -8259,7 +8269,8 @@
 									"_parent": {
 										"$ref": "AAAAAAF/YXSGbI6kCvc="
 									},
-									"name": "int x"
+									"name": "int x",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
@@ -8267,7 +8278,8 @@
 									"_parent": {
 										"$ref": "AAAAAAF/YXSGbI6kCvc="
 									},
-									"name": "int y"
+									"name": "int y",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
@@ -8275,7 +8287,8 @@
 									"_parent": {
 										"$ref": "AAAAAAF/YXSGbI6kCvc="
 									},
-									"name": "int color"
+									"name": "int color",
+									"type": ""
 								}
 							]
 						},
@@ -8312,7 +8325,8 @@
 									"_parent": {
 										"$ref": "AAAAAAF/YY3V7LIY3EU="
 									},
-									"name": "int sx"
+									"name": "int sx",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
@@ -8320,7 +8334,8 @@
 									"_parent": {
 										"$ref": "AAAAAAF/YY3V7LIY3EU="
 									},
-									"name": "int sy"
+									"name": "int sy",
+									"type": ""
 								},
 								{
 									"_type": "UMLParameter",
@@ -8449,7 +8464,7 @@
 							"_parent": {
 								"$ref": "AAAAAAF/YTFaF4YIsGY="
 							},
-							"name": "WIDTH",
+							"name": "width",
 							"isStatic": true,
 							"type": "int"
 						},
@@ -8459,7 +8474,7 @@
 							"_parent": {
 								"$ref": "AAAAAAF/YTFaF4YIsGY="
 							},
-							"name": "HEIGHT",
+							"name": "height",
 							"isStatic": true,
 							"type": "int"
 						},
@@ -8469,7 +8484,7 @@
 							"_parent": {
 								"$ref": "AAAAAAF/YTFaF4YIsGY="
 							},
-							"name": "SIZE",
+							"name": "size",
 							"isStatic": true,
 							"type": "int"
 						},
@@ -8479,7 +8494,7 @@
 							"_parent": {
 								"$ref": "AAAAAAF/YTFaF4YIsGY="
 							},
-							"name": "BACK",
+							"name": "back",
 							"isStatic": true,
 							"type": "Color"
 						},
@@ -8489,7 +8504,7 @@
 							"_parent": {
 								"$ref": "AAAAAAF/YTFaF4YIsGY="
 							},
-							"name": "FLYF",
+							"name": "flyf",
 							"isStatic": true,
 							"type": "Color"
 						},
@@ -8499,7 +8514,7 @@
 							"_parent": {
 								"$ref": "AAAAAAF/YTFaF4YIsGY="
 							},
-							"name": "LAND",
+							"name": "land",
 							"isStatic": true,
 							"type": "Color"
 						}
