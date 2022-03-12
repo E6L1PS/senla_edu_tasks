@@ -1,2 +1,0 @@
-# pesternikov_danil
-
