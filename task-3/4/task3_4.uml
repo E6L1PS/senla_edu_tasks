@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>ru.mirea.senla.task3.task3_4</OriginalElement>
+  <nodes>
+    <node x="134.3888888888889" y="0.0">ru.mirea.senla.task3.task3_4.Order</node>
+    <node x="358.8888888888889" y="0.0">ru.mirea.senla.task3.task3_4.Person</node>
+    <node x="23.375" y="432.0">ru.mirea.senla.task3.task3_4.Warehouse</node>
+    <node x="0.0" y="215.0">ru.mirea.senla.task3.task3_4.Book</node>
+    <node x="350.8888888888889" y="171.0">ru.mirea.senla.task3.task3_4.Сustomer</node>
+    <node x="88.8888888888889" y="625.0">ru.mirea.senla.task3.task3_4.Orders</node>
+    <node x="125.97500000000001" y="906.0">ru.mirea.senla.task3.task3_4.Main</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="ru.mirea.senla.task3.task3_4.Book" target="ru.mirea.senla.task3.task3_4.Order">
+      <point x="0.0" y="-83.5" />
+      <point x="95.0" y="190.0" />
+      <point x="149.5888888888889" y="190.0" />
+      <point x="-60.80000000000001" y="82.5" />
+    </edge>
+    <edge source="ru.mirea.senla.task3.task3_4.Orders" target="ru.mirea.senla.task3.task3_4.Order">
+      <point x="86.80000000000001" y="-115.5" />
+      <point x="284.1888888888889" y="600.0" />
+      <point x="254.875" y="600.0" />
+      <point x="254.875" y="190.0" />
+      <point x="271.1888888888889" y="190.0" />
+      <point x="60.80000000000001" y="82.5" />
+    </edge>
+    <edge source="ru.mirea.senla.task3.task3_4.Warehouse" target="ru.mirea.senla.task3.task3_4.Order">
+      <point x="74.625" y="-71.5" />
+      <point x="197.5" y="407.0" />
+      <point x="205.09583333333336" y="407.0" />
+      <point x="205.09583333333336" y="190.0" />
+      <point x="179.98888888888894" y="190.0" />
+      <point x="-30.399999999999977" y="82.5" />
+    </edge>
+    <edge source="ru.mirea.senla.task3.task3_4.Warehouse" target="ru.mirea.senla.task3.task3_4.Book">
+      <point x="-74.625" y="-71.5" />
+      <point x="48.25" y="407.0" />
+      <point x="31.666666666666657" y="407.0" />
+      <point x="-63.333333333333336" y="83.5" />
+    </edge>
+    <edge source="ru.mirea.senla.task3.task3_4.Orders" target="ru.mirea.senla.task3.task3_4.Warehouse">
+      <point x="-86.80000000000004" y="-115.5" />
+      <point x="110.58888888888886" y="600.0" />
+      <point x="73.125" y="600.0" />
+      <point x="-49.75" y="71.5" />
+    </edge>
+    <edge source="ru.mirea.senla.task3.task3_4.Main" target="ru.mirea.senla.task3.task3_4.Orders">
+      <point x="-37.25" y="-27.0" />
+      <point x="163.22500000000002" y="881.0" />
+      <point x="143.1388888888889" y="881.0" />
+      <point x="-54.25" y="115.5" />
+    </edge>
+    <edge source="ru.mirea.senla.task3.task3_4.Сustomer" target="ru.mirea.senla.task3.task3_4.Person">
+      <point x="45.75" y="-38.5" />
+      <point x="488.1388888888889" y="146.0" />
+      <point x="484.1388888888889" y="146.0" />
+      <point x="41.75" y="60.5" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.8" x="689.7916666666666" y="432.75" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Fields</Category>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+    <Category>Inner Classes</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
