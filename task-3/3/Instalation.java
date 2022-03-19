@@ -7,19 +7,19 @@ public class Instalation implements IProduct {
 
     @Override
     public void installFirstPart(IProductPart part) {
-        lenses = part;
+        this.lenses = part;
         System.out.println("Компонент 'линзы' установлен");
     }
 
     @Override
     public void installSecondPart(IProductPart part) {
-        housing = part;
+        this.housing = part;
         System.out.println("Компонент 'корпус' установлен");
     }
 
     @Override
     public void installThirdPart(IProductPart part) {
-        shackles = part;
+        this.shackles = part;
         System.out.println("Компонент 'дужки' установлен");
     }
 }

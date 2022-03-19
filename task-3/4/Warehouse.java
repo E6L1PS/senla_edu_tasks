@@ -21,13 +21,13 @@ public class Warehouse {
     }
 
     public void addBook(int bookId) {
-        availableBooks[bookId].setStatus("в наличии");
+        availableBooks[bookId].setStatus(BookStatus.IN_STOCK);
         availableBooks[bookId].removeRequest();
-        System.out.println("Добавлена книга '" + bookId + "' на склад");
+        System.out.println("Добавлена книга '" + bookId + "' на склад, статус книги: " + availableBooks[bookId].getStatus());
     }
     public void removeBook(int bookId) {
-        availableBooks[bookId].setStatus("отсутствует");
-        System.out.println("Снята книга '" + bookId + "' со склада");
+        availableBooks[bookId].setStatus(BookStatus.OUT_STOCK);
+        System.out.println("Снята книга '" + bookId + "' со склада, статус книги: " + availableBooks[bookId].getStatus());
     }
 
     public Book getBook(int bookId) {

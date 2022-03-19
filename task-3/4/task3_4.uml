@@ -3,70 +3,141 @@
   <ID>JAVA</ID>
   <OriginalElement>ru.mirea.senla.task3.task3_4</OriginalElement>
   <nodes>
-    <node x="134.3888888888889" y="0.0">ru.mirea.senla.task3.task3_4.Order</node>
-    <node x="358.8888888888889" y="0.0">ru.mirea.senla.task3.task3_4.Person</node>
-    <node x="23.375" y="432.0">ru.mirea.senla.task3.task3_4.Warehouse</node>
-    <node x="0.0" y="215.0">ru.mirea.senla.task3.task3_4.Book</node>
-    <node x="350.8888888888889" y="171.0">ru.mirea.senla.task3.task3_4.Сustomer</node>
-    <node x="88.8888888888889" y="625.0">ru.mirea.senla.task3.task3_4.Orders</node>
-    <node x="125.97500000000001" y="906.0">ru.mirea.senla.task3.task3_4.Main</node>
+    <node x="285.23671875" y="410.5">ru.mirea.senla.task3.task3_4.Order</node>
+    <node x="491.73671875" y="171.0">ru.mirea.senla.task3.task3_4.OrderStatus</node>
+    <node x="288.73671875" y="227.0">ru.mirea.senla.task3.task3_4.Employee</node>
+    <node x="0.0" y="227.0">ru.mirea.senla.task3.task3_4.Customer</node>
+    <node x="149.54140625000002" y="0.0">ru.mirea.senla.task3.task3_4.Person</node>
+    <node x="116.23671875000002" y="866.0">ru.mirea.senla.task3.task3_4.Warehouse</node>
+    <node x="133.23671875000002" y="627.0">ru.mirea.senla.task3.task3_4.Book</node>
+    <node x="73.23671875000002" y="410.0">ru.mirea.senla.task3.task3_4.BookStatus</node>
+    <node x="285.23671875" y="1069.0">ru.mirea.senla.task3.task3_4.Orders</node>
+    <node x="319.23671875" y="1350.0">ru.mirea.senla.task3.task3_4.Main</node>
   </nodes>
   <notes />
   <edges>
     <edge source="ru.mirea.senla.task3.task3_4.Book" target="ru.mirea.senla.task3.task3_4.Order">
-      <point x="0.0" y="-83.5" />
-      <point x="95.0" y="190.0" />
-      <point x="149.5888888888889" y="190.0" />
-      <point x="-60.80000000000001" y="82.5" />
+      <point x="55.0" y="-94.5" />
+      <point x="270.73671875" y="602.0" />
+      <point x="304.23671875" y="602.0" />
+      <point x="-76.0" y="83.0" />
     </edge>
-    <edge source="ru.mirea.senla.task3.task3_4.Orders" target="ru.mirea.senla.task3.task3_4.Order">
-      <point x="86.80000000000001" y="-115.5" />
-      <point x="284.1888888888889" y="600.0" />
-      <point x="254.875" y="600.0" />
-      <point x="254.875" y="190.0" />
-      <point x="271.1888888888889" y="190.0" />
-      <point x="60.80000000000001" y="82.5" />
+    <edge source="ru.mirea.senla.task3.task3_4.Order" target="ru.mirea.senla.task3.task3_4.OrderStatus">
+      <point x="38.0" y="-83.0" />
+      <point x="418.23671875" y="380.0" />
+      <point x="516.11171875" y="380.0" />
+      <point x="-73.125" y="94.5" />
+    </edge>
+    <edge source="ru.mirea.senla.task3.task3_4.Main" target="ru.mirea.senla.task3.task3_4.Customer">
+      <point x="-55.875" y="-27.0" />
+      <point x="337.86171875" y="1330.0" />
+      <point x="50.125" y="1330.0" />
+      <point x="50.125" y="390.0" />
+      <point x="22.875" y="390.0" />
+      <point x="-68.625" y="38.5" />
+    </edge>
+    <edge source="ru.mirea.senla.task3.task3_4.Employee" target="ru.mirea.senla.task3.task3_4.Person">
+      <point x="45.75" y="-38.5" />
+      <point x="425.98671875" y="141.0" />
+      <point x="295.66640625" y="141.0" />
+      <point x="62.625" y="60.5" />
     </edge>
     <edge source="ru.mirea.senla.task3.task3_4.Warehouse" target="ru.mirea.senla.task3.task3_4.Order">
-      <point x="74.625" y="-71.5" />
-      <point x="197.5" y="407.0" />
-      <point x="205.09583333333336" y="407.0" />
-      <point x="205.09583333333336" y="190.0" />
-      <point x="179.98888888888894" y="190.0" />
-      <point x="-30.399999999999977" y="82.5" />
+      <point x="79.60000000000002" y="-71.5" />
+      <point x="295.33671875000005" y="841.0" />
+      <point x="356.888671875" y="841.0" />
+      <point x="356.888671875" y="602.0" />
+      <point x="342.23671875" y="602.0" />
+      <point x="-38.0" y="83.0" />
+    </edge>
+    <edge source="ru.mirea.senla.task3.task3_4.Book" target="ru.mirea.senla.task3.task3_4.BookStatus">
+      <point x="-55.0" y="-94.5" />
+      <point x="160.73671875000002" y="602.0" />
+      <point x="169.23671875000002" y="602.0" />
+      <point x="0.0" y="83.5" />
     </edge>
     <edge source="ru.mirea.senla.task3.task3_4.Warehouse" target="ru.mirea.senla.task3.task3_4.Book">
-      <point x="-74.625" y="-71.5" />
-      <point x="48.25" y="407.0" />
-      <point x="31.666666666666657" y="407.0" />
-      <point x="-63.333333333333336" y="83.5" />
+      <point x="-39.80000000000001" y="-71.5" />
+      <point x="175.93671875" y="841.0" />
+      <point x="160.73671875000002" y="841.0" />
+      <point x="-55.0" y="94.5" />
+    </edge>
+    <edge source="ru.mirea.senla.task3.task3_4.Warehouse" target="ru.mirea.senla.task3.task3_4.BookStatus">
+      <point x="-79.60000000000002" y="-71.5" />
+      <point x="136.13671875" y="841.0" />
+      <point x="122.57500000000002" y="841.0" />
+      <point x="122.57500000000002" y="602.0" />
+      <point x="105.23671875000002" y="602.0" />
+      <point x="-64.0" y="83.5" />
+    </edge>
+    <edge source="ru.mirea.senla.task3.task3_4.Order" target="ru.mirea.senla.task3.task3_4.Customer">
+      <point x="-76.0" y="-83.0" />
+      <point x="304.23671875" y="390.0" />
+      <point x="114.375" y="390.0" />
+      <point x="22.875" y="38.5" />
+    </edge>
+    <edge source="ru.mirea.senla.task3.task3_4.Orders" target="ru.mirea.senla.task3.task3_4.OrderStatus">
+      <point x="93.0" y="-115.5" />
+      <point x="486.73671875" y="1049.0" />
+      <point x="632.48671875" y="1049.0" />
+      <point x="632.48671875" y="390.0" />
+      <point x="613.61171875" y="390.0" />
+      <point x="24.375" y="94.5" />
+    </edge>
+    <edge source="ru.mirea.senla.task3.task3_4.Customer" target="ru.mirea.senla.task3.task3_4.Person">
+      <point x="45.75" y="-38.5" />
+      <point x="137.25" y="151.0" />
+      <point x="212.16640625000002" y="151.0" />
+      <point x="-20.875" y="60.5" />
+    </edge>
+    <edge source="ru.mirea.senla.task3.task3_4.Orders" target="ru.mirea.senla.task3.task3_4.Order">
+      <point x="62.0" y="-115.5" />
+      <point x="455.73671875" y="1049.0" />
+      <point x="435.125" y="1049.0" />
+      <point x="435.125" y="602.0" />
+      <point x="456.23671875" y="602.0" />
+      <point x="76.0" y="83.0" />
     </edge>
     <edge source="ru.mirea.senla.task3.task3_4.Orders" target="ru.mirea.senla.task3.task3_4.Warehouse">
-      <point x="-86.80000000000004" y="-115.5" />
-      <point x="110.58888888888886" y="600.0" />
-      <point x="73.125" y="600.0" />
+      <point x="-62.0" y="-115.5" />
+      <point x="331.73671875" y="1039.0" />
+      <point x="165.98671875000002" y="1039.0" />
       <point x="-49.75" y="71.5" />
     </edge>
     <edge source="ru.mirea.senla.task3.task3_4.Main" target="ru.mirea.senla.task3.task3_4.Orders">
-      <point x="-37.25" y="-27.0" />
-      <point x="163.22500000000002" y="881.0" />
-      <point x="143.1388888888889" y="881.0" />
+      <point x="-18.625" y="-27.0" />
+      <point x="375.11171875" y="1320.0" />
+      <point x="339.48671875" y="1320.0" />
       <point x="-54.25" y="115.5" />
     </edge>
-    <edge source="ru.mirea.senla.task3.task3_4.Сustomer" target="ru.mirea.senla.task3.task3_4.Person">
-      <point x="45.75" y="-38.5" />
-      <point x="488.1388888888889" y="146.0" />
-      <point x="484.1388888888889" y="146.0" />
-      <point x="41.75" y="60.5" />
+    <edge source="ru.mirea.senla.task3.task3_4.Orders" target="ru.mirea.senla.task3.task3_4.Customer">
+      <point x="-93.0" y="-115.5" />
+      <point x="300.73671875" y="1049.0" />
+      <point x="62.73671875000002" y="1049.0" />
+      <point x="62.73671875000002" y="390.0" />
+      <point x="68.625" y="390.0" />
+      <point x="-22.875" y="38.5" />
+    </edge>
+    <edge source="ru.mirea.senla.task3.task3_4.Main" target="ru.mirea.senla.task3.task3_4.OrderStatus">
+      <point x="55.875" y="-27.0" />
+      <point x="449.61171875" y="1330.0" />
+      <point x="643.48671875" y="1330.0" />
+      <point x="643.48671875" y="390.0" />
+      <point x="662.36171875" y="390.0" />
+      <point x="73.125" y="94.5" />
+    </edge>
+    <edge source="ru.mirea.senla.task3.task3_4.Order" target="ru.mirea.senla.task3.task3_4.Employee">
+      <point x="0.0" y="-83.0" />
+      <point x="0.0" y="38.5" />
     </edge>
   </edges>
-  <settings layout="Hierarchic Group" zoom="0.8" x="689.7916666666666" y="432.75" />
+  <settings layout="Hierarchic Group" zoom="1.0" x="330.0634920634916" y="350.0" />
   <SelectedNodes />
   <Categories>
     <Category>Fields</Category>
     <Category>Constructors</Category>
-    <Category>Methods</Category>
     <Category>Properties</Category>
+    <Category>Methods</Category>
     <Category>Inner Classes</Category>
   </Categories>
   <SCOPE>All</SCOPE>

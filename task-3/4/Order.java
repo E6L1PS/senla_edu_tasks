@@ -2,29 +2,20 @@ package ru.mirea.senla.task3.task3_4;
 
 public class Order {
     private int id;
-    private int employeeId;
-    private int customerId;
+    private Customer customer;
+    private Employee employee;
     private int[] books;
-    private String status;
+    private OrderStatus status;
 
-    public Order(int id, int customerId, int[] books) {
+    public Order(int id, Customer customer, int[] books) {
         this.id = id;
-        this.employeeId = employeeId;
-        this.customerId = customerId;
+        this.customer = customer;
         this.books = books;
-        this.status = status;
+        this.status = OrderStatus.NEW;
     }
 
     public int getId() {
         return id;
-    }
-
-    public int getEmployeeId() {
-        return employeeId;
-    }
-
-    public int getCustomerId() {
-        return customerId;
     }
 
     public int[] getBooks() {
@@ -32,27 +23,23 @@ public class Order {
     }
 
     public String getStatus() {
-        return status;
+        return status.getNameStatus();
+    }
+
+    public Customer getCustomer() {
+        return customer;
     }
 
     public void setId(int id) {
         this.id = id;
     }
 
-    public void setEmployeeId(int employeeId) {
-        this.employeeId = employeeId;
-    }
-
-    public void setCustomerId(int customerId) {
-        this.customerId = customerId;
-    }
 
     public void setBooks(int[] books) {
         this.books = books;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(OrderStatus status) {
         this.status = status;
     }
-
 }
