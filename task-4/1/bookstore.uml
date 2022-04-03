@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>ru.mirea.senla.bookstore</OriginalElement>
+  <nodes>
+    <node x="404.50345289631" y="0.0">ru.mirea.senla.bookstore.view</node>
+    <node x="72.69819624819627" y="13.201171875">ru.mirea.senla.bookstore.model</node>
+    <node x="183.50345289631005" y="143.201171875">ru.mirea.senla.bookstore.repository</node>
+    <node x="107.46183261183262" y="223.201171875">ru.mirea.senla.bookstore.service</node>
+    <node x="105.0" y="393.201171875">ru.mirea.senla.bookstore.Main</node>
+    <node x="47.5" y="303.201171875">ru.mirea.senla.bookstore.controller</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="ru.mirea.senla.bookstore.Main" target="ru.mirea.senla.bookstore.repository">
+      <point x="63.85714285714283" y="-27.0" />
+      <point x="243.35714285714283" y="373.201171875" />
+      <point x="319.8198309626881" y="373.201171875" />
+      <point x="319.8198309626881" y="198.201171875" />
+      <point x="337.50345289631" y="198.201171875" />
+      <point x="65.99999999999997" y="15.0" />
+    </edge>
+    <edge source="ru.mirea.senla.bookstore.Main" target="ru.mirea.senla.bookstore.model">
+      <point x="-42.57142857142861" y="-27.0" />
+      <point x="136.9285714285714" y="363.201171875" />
+      <point x="37.0" y="363.201171875" />
+      <point x="37.0" y="113.201171875" />
+      <point x="115.97092352092355" y="113.201171875" />
+      <point x="-24.72727272727272" y="15.0" />
+    </edge>
+    <edge source="ru.mirea.senla.bookstore.controller" target="ru.mirea.senla.bookstore.model">
+      <point x="-58.66666666666666" y="-15.0" />
+      <point x="76.83333333333334" y="278.201171875" />
+      <point x="86.50345289631005" y="278.201171875" />
+      <point x="86.50345289631005" y="123.201171875" />
+      <point x="128.33455988455992" y="123.201171875" />
+      <point x="-12.363636363636346" y="15.0" />
+    </edge>
+    <edge source="ru.mirea.senla.bookstore.controller" target="ru.mirea.senla.bookstore.service">
+      <point x="0.0" y="-15.0" />
+      <point x="135.5" y="278.201171875" />
+      <point x="132.79516594516596" y="278.201171875" />
+      <point x="-50.66666666666666" y="15.0" />
+    </edge>
+    <edge source="ru.mirea.senla.bookstore.Main" target="ru.mirea.senla.bookstore.controller">
+      <point x="-21.285714285714306" y="-27.0" />
+      <point x="158.2142857142857" y="353.201171875" />
+      <point x="91.5" y="353.201171875" />
+      <point x="-44.0" y="15.0" />
+    </edge>
+    <edge source="ru.mirea.senla.bookstore.repository" target="ru.mirea.senla.bookstore.model">
+      <point x="-58.666666666666686" y="-15.0" />
+      <point x="212.83678622964337" y="113.201171875" />
+      <point x="177.78910533910536" y="113.201171875" />
+      <point x="37.09090909090909" y="15.0" />
+    </edge>
+    <edge source="ru.mirea.senla.bookstore.service" target="ru.mirea.senla.bookstore.model">
+      <point x="-60.80000000000001" y="-15.0" />
+      <point x="122.66183261183261" y="198.201171875" />
+      <point x="138.49200164914453" y="198.201171875" />
+      <point x="138.49200164914453" y="123.201171875" />
+      <point x="140.69819624819627" y="123.201171875" />
+      <point x="0.0" y="15.0" />
+    </edge>
+    <edge source="ru.mirea.senla.bookstore.Main" target="ru.mirea.senla.bookstore.service">
+      <point x="21.285714285714278" y="-27.0" />
+      <point x="200.78571428571428" y="353.201171875" />
+      <point x="254.45837971552257" y="353.201171875" />
+      <point x="254.45837971552257" y="278.201171875" />
+      <point x="234.12849927849928" y="278.201171875" />
+      <point x="50.66666666666666" y="15.0" />
+    </edge>
+    <edge source="ru.mirea.senla.bookstore.model" target="ru.mirea.senla.bookstore.model">
+      <point x="-49.45454545454545" y="15.0" />
+      <point x="91.24365079365081" y="73.201171875" />
+      <point x="42.69819624819627" y="73.201171875" />
+      <point x="42.69819624819627" y="20.701171875" />
+      <point x="-68.0" y="-7.5" />
+    </edge>
+    <edge source="ru.mirea.senla.bookstore.service" target="ru.mirea.senla.bookstore.repository">
+      <point x="30.399999999999977" y="-15.0" />
+      <point x="213.8618326118326" y="198.201171875" />
+      <point x="205.50345289631005" y="198.201171875" />
+      <point x="-66.0" y="15.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="1.0" x="154.5" y="165.0" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+    <Category>Inner Classes</Category>
+    <Category>Fields</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
