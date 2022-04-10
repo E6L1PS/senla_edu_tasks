@@ -1,8 +1,6 @@
 package ru.mirea.senla.bookstore.model;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Book {
     private String name;
@@ -11,8 +9,7 @@ public class Book {
     private String description;
     private BookStatus status;
     private int id;
-    private int requestNumber = 0;
-   // private List<Integer> request = new ArrayList<>();
+    private Request request;
     private LocalDate deliveryDate;
 
     public Book(String name, LocalDate publicationDate, int price, String description, int id) {
@@ -22,20 +19,12 @@ public class Book {
         this.description = description;
         this.status = BookStatus.OUT_STOCK;
         this.id = id;
-//        this.request = request;
+        this.request = new Request(id, name, 0);
 //        this.deliveryDate = deliveryDate;
     }
 
-    public int getRequestNumber() {
-        return requestNumber;
-    }
-
-    public void addRequest() {
-        requestNumber++;
-    }
-
-    public void clearRequest() {
-        requestNumber = 0;
+    public Request getRequest() {
+        return request;
     }
 
     public String getName() {
@@ -62,14 +51,8 @@ public class Book {
         return id;
     }
 
-    //public List<Integer> getRequest() {return request;}
-
     public LocalDate getDeliveryDate() {
         return deliveryDate;
-    }
-
-    public void setRequestNumber(int requestNumber) {
-        this.requestNumber = requestNumber;
     }
 
     public void setName(String name) {
@@ -96,8 +79,6 @@ public class Book {
         this.id = id;
     }
 
-    //public void setRequest(List<Integer> request) {this.request = request;}
-
     public void setDeliveryDate(LocalDate deliveryDate) {
         this.deliveryDate = deliveryDate;
     }
@@ -109,7 +90,7 @@ public class Book {
                 "id = " + id +
                 ",    publicationDate = " + publicationDate +
                 ",    status = " + status +
-                ",    requestNumber = " + requestNumber +
+                ",    requestNumber = " + request.getNumber() +
                 ",    price = " + price +
                 ",    deliveryDate = " + deliveryDate +
                 ",    name = '" + name + '\'' +

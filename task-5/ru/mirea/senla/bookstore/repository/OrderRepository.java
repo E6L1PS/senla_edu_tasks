@@ -15,6 +15,7 @@ public class OrderRepository {
     public Order getOrderById(int id) {
         return orders.stream().filter(order -> order.getId() == id).findAny().orElse(null);
     }
+
     public void addOrder(Order order) {
         orders.add(order);
     }

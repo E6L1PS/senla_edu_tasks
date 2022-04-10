@@ -25,4 +25,14 @@ public class BookRepository {
     public Book getBookById(int id) {
         return books.stream().filter(book -> book.getId() == id).findAny().orElse(null);
     }
+
+    public int checkPrice(List<Integer> bookIds) {
+        int sum = 0;
+
+        for (Integer bookId : bookIds) {
+            sum += books.get(bookId).getPrice();
+        }
+
+        return sum;
+    }
 }

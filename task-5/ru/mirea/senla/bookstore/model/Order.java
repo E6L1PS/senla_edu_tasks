@@ -1,7 +1,7 @@
 package ru.mirea.senla.bookstore.model;
 
 import java.time.LocalDate;
-import java.util.Arrays;
+import java.util.List;
 
 public class Order {
     private static int countOrderId = 0;
@@ -10,10 +10,10 @@ public class Order {
     private int id;
     private Customer customer;
     private Employee employee;
-    private int[] bookIds;
+    private List<Integer> bookIds;
     private OrderStatus status;
 
-    public Order(Customer customer, int[] booksId, int price) {
+    public Order(Customer customer, List<Integer> booksId, int price) {
         this.customer = customer;
         this.bookIds = booksId;
         this.id = countOrderId++;
@@ -29,7 +29,7 @@ public class Order {
         return id;
     }
 
-    public int[] getBookIds() {
+    public List<Integer> getBookIds() {
         return bookIds;
     }
 
@@ -54,7 +54,7 @@ public class Order {
     }
 
 
-    public void setBookIds(int[] bookIds) {
+    public void setBookIds(List<Integer> bookIds) {
         this.bookIds = bookIds;
     }
 
@@ -69,7 +69,7 @@ public class Order {
                 ", price=" + price +
                 ", id=" + id +
                 ", customer=" + customer +
-                ", books=" + Arrays.toString(bookIds) +
+                ", books=" + bookIds +
                 ", status=" + status +
                 '}' + '\n';
     }

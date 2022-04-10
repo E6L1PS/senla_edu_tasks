@@ -3,42 +3,44 @@ package ru.mirea.senla.bookstore.service;
 import ru.mirea.senla.bookstore.model.*;
 import ru.mirea.senla.bookstore.repository.BookRepository;
 import ru.mirea.senla.bookstore.repository.OrderRepository;
+import ru.mirea.senla.bookstore.repository.RequestRepository;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
 
 public class OrderService {
 
     private OrderRepository orderRepository;
     private BookRepository bookRepository;
-    private List<Order> sortedOrders;
+    private RequestRepository requestRepository;
+
     private List<Order> completedOrders = new ArrayList<>();
 
-    public OrderService(OrderRepository orderRepository, BookRepository bookRepository) {
+    public OrderService(OrderRepository orderRepository, BookRepository bookRepository, RequestRepository requestRepository) {
         this.orderRepository = orderRepository;
         this.bookRepository = bookRepository;
-        this.sortedOrders = new ArrayList<>(orderRepository.getOrders());
+        this.requestRepository = requestRepository;
     }
 
     public void setStatus(int orderId, OrderStatus orderStatus) {
         if (orderStatus.equals(OrderStatus.COMPLETED)) {
-            if (Arrays.stream(orderRepository.getOrderById(orderId).getBookIds()).allMatch((x) -> bookRepository.getBookById(x).getStatus() == BookStatus.IN_STOCK)) {
-                completedOrders.add(orderRepository.getOrderById(orderId));
-                orderRepository.getOrderById(orderId).setStatus(orderStatus);
-                orderRepository.getOrderById(orderId).setIssueDate(LocalDate.now());
+            Order orderById = orderRepository.getOrderById(orderId);
+            if (orderById.getBookIds().stream().allMatch((x) -> bookRepository.getBookById(x).getStatus() == BookStatus.IN_STOCK)) {
+                completedOrders.add(orderById);
+                orderById.setStatus(orderStatus);
+                orderById.setIssueDate(LocalDate.now());
             } else {
                 System.out.println("Заказ не может быть завершен, проверьте статус книги");
             }
         }
     }
 
-    public void addOrder(Customer customer, int[] bookIds) {
-        Order order = new Order(customer, bookIds, checkPrice(bookIds));
-        orderRepository.addOrder(order);
-        sortedOrders.add(order);
+    public void addOrder(Customer customer, List<Integer> bookIds) {
+        Order order = new Order(customer, bookIds, bookRepository.checkPrice(bookIds));
         checkBook(bookIds);
+        orderRepository.addOrder(order);
         System.out.println("Создан новый заказ");
     }
 
@@ -47,47 +49,26 @@ public class OrderService {
         System.out.println("Заказ № " + orderId + " отменен");
     }
 
-    public int checkPrice(int[] bookIds) {
-        int sum = 0;
-
-        for (int bookId : bookIds) {
-            sum += bookRepository.getBookById(bookId).getPrice();
-        }
-
-        return sum;
-    }
-
-    public void checkBook(int[] bookIds) {
+    public void checkBook(List<Integer> bookIds) {
         for (int i = 0; i < bookRepository.getBooks().size(); i++) {
             for (int bookId : bookIds) {
-                if (i == bookId && bookRepository.getBookById(i).getStatus() == BookStatus.OUT_STOCK) {
-                    bookRepository.getBookById(i).addRequest();
+                Book bookById = bookRepository.getBookById(i);
+                if (i == bookId && bookById.getStatus() == BookStatus.OUT_STOCK) {
+                    requestRepository.addRequest(bookById);
+                    System.out.println("Создан запрос на книгу " + i);
                 }
             }
         }
     }
 
-    public String showOrders() {
-        return sortedOrders.toString().replaceAll(", ", "")
-                .replace("[", "")
-                .replace("]", "");
+    public List<Order> getSortedOrders(Comparator comparator) {
+        List<Order> sortedOrders = new ArrayList<>(orderRepository.getOrders());
+        sortedOrders.sort(comparator);
+        return sortedOrders;
     }
 
-    //Сортировка заказов
-    public void sortOrdersByPrice() {
-        sortedOrders.sort((order1, order2) -> order1.getPrice() - order2.getPrice());
-    }
-
-    public void sortOrdersByDate() {
-        sortedOrders.sort((order1, order2) -> order1.getIssueDate().compareTo(order2.getIssueDate()));
-    }
-
-    public void sortOrdersByStatus() {
-        sortedOrders.sort((order1, order2) -> order1.getStatus().compareTo(order2.getStatus()));
-    }
-
-    public String showCompletedOrders(LocalDate startDate, LocalDate endDate) {
-        List<Order> diapasonCompletedOrders = new ArrayList<Order>();
+    public List<Order> getCompletedOrders(LocalDate startDate, LocalDate endDate, Comparator comparator) {
+        List<Order> diapasonCompletedOrders = new ArrayList<>();
 
         for (Order order : completedOrders) {
             if (order.getIssueDate().isAfter(startDate) && order.getIssueDate().isBefore(endDate)) {
@@ -95,16 +76,8 @@ public class OrderService {
             }
         }
 
-        return diapasonCompletedOrders.toString();
-    }
-
-    //Сортировка выполненных заказов
-    public void sortCompletedOrdersByPrice() {
-        completedOrders.sort((order1, order2) -> order1.getPrice() - order2.getPrice());
-    }
-
-    public void sortCompletedOrdersByDate() {
-        completedOrders.sort((order1, order2) -> order1.getIssueDate().compareTo(order2.getIssueDate()));
+        diapasonCompletedOrders.sort(comparator);
+        return diapasonCompletedOrders;
     }
 
     public int getFullPrice(LocalDate startDate, LocalDate endDate) {
