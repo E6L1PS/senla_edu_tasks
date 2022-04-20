@@ -2,12 +2,11 @@ package ru.mirea.senla.bookstore.service;
 
 import ru.mirea.senla.bookstore.model.*;
 import ru.mirea.senla.bookstore.model.compares.CompareStrategy;
-import ru.mirea.senla.bookstore.model.csv.CsvBookReader;
 import ru.mirea.senla.bookstore.model.csv.CsvOrderReader;
 import ru.mirea.senla.bookstore.model.csv.CsvOrderWriter;
-import ru.mirea.senla.bookstore.repository.BookRepository;
-import ru.mirea.senla.bookstore.repository.OrderRepository;
-import ru.mirea.senla.bookstore.repository.RequestRepository;
+import ru.mirea.senla.bookstore.repository.interfaces.IBookRepository;
+import ru.mirea.senla.bookstore.repository.interfaces.IOrderRepository;
+import ru.mirea.senla.bookstore.repository.interfaces.IRequestRepository;
 import ru.mirea.senla.bookstore.service.interfaces.IOrderService;
 
 import java.time.LocalDate;
@@ -17,13 +16,13 @@ import java.util.List;
 
 public class OrderService implements IOrderService {
 
-    private OrderRepository orderRepository;
-    private BookRepository bookRepository;
-    private RequestRepository requestRepository;
+    private IOrderRepository orderRepository;
+    private IBookRepository bookRepository;
+    private IRequestRepository requestRepository;
 
     private List<Order> completedOrders = new ArrayList<>();
 
-    public OrderService(OrderRepository orderRepository, BookRepository bookRepository, RequestRepository requestRepository) {
+    public OrderService(IOrderRepository orderRepository, IBookRepository bookRepository, IRequestRepository requestRepository) {
         this.orderRepository = orderRepository;
         this.bookRepository = bookRepository;
         this.requestRepository = requestRepository;
@@ -112,6 +111,7 @@ public class OrderService implements IOrderService {
     public void exportOrders() {
         new CsvOrderWriter().writeCsvFile(orderRepository.getOrders());
     }
+
     public void exportOrder(int id) {
         new CsvOrderWriter().writeCsvFile(orderRepository.getOrderById(id));
     }

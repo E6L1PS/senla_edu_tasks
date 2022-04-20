@@ -2,19 +2,19 @@ package ru.mirea.senla.bookstore.controller;
 
 import ru.mirea.senla.bookstore.model.Book;
 import ru.mirea.senla.bookstore.model.Request;
-import ru.mirea.senla.bookstore.service.BookService;
+import ru.mirea.senla.bookstore.service.interfaces.IBookService;
 
 import java.util.List;
 
 public class BookController {
 
-    private BookService bookService;
+    private IBookService bookService;
 
-    public BookController(BookService bookService) {
+    public BookController(IBookService bookService) {
         this.bookService = bookService;
     }
 
-    public BookService getBookService() {
+    public IBookService getBookService() {
         return bookService;
     }
 

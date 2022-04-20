@@ -3,9 +3,8 @@ package ru.mirea.senla.bookstore.service;
 import ru.mirea.senla.bookstore.model.Book;
 import ru.mirea.senla.bookstore.model.BookStatus;
 import ru.mirea.senla.bookstore.model.compares.CompareStrategy;
-import ru.mirea.senla.bookstore.repository.BookRepository;
-import ru.mirea.senla.bookstore.repository.RequestRepository;
-import ru.mirea.senla.bookstore.repository.WarehouseRepository;
+import ru.mirea.senla.bookstore.repository.interfaces.IBookRepository;
+import ru.mirea.senla.bookstore.repository.interfaces.IRequestRepository;
 import ru.mirea.senla.bookstore.service.interfaces.IWarehouseService;
 
 import java.time.LocalDate;
@@ -14,21 +13,21 @@ import java.util.List;
 
 public class WarehouseService implements IWarehouseService {
 
-    private WarehouseRepository warehouseRepository;
-    private BookRepository bookRepository;
-    private RequestRepository requestRepository;
+    private IBookRepository warehouseRepository;
+    private IBookRepository  bookRepository;
+    private IRequestRepository requestRepository;
 
-    public WarehouseService(WarehouseRepository warehouseRepository, BookRepository bookRepository, RequestRepository requestRepository) {
+    public WarehouseService(IBookRepository  warehouseRepository, IBookRepository  bookRepository, IRequestRepository requestRepository) {
         this.warehouseRepository = warehouseRepository;
         this.bookRepository = bookRepository;
         this.requestRepository = requestRepository;
     }
 
-    public WarehouseRepository getWarehouseRepository() {
+    public IBookRepository getWarehouseRepository() {
         return warehouseRepository;
     }
 
-    public BookRepository getBookRepository() {
+    public IBookRepository getBookRepository() {
         return bookRepository;
     }
 

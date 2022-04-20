@@ -40,4 +40,9 @@ public class WarehouseRepository implements IBookRepository {
         books.remove(id);
     }
 
+    @Override
+    public int checkPrice(List<Integer> bookIds) {
+        return 0;
+    }
+
 }

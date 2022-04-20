@@ -35,7 +35,7 @@ public class CsvBookWriter implements CsvWritable<Book> {
     @Override
     public void writeCsvFile(List<Book> books) {
         try {
-            Writer writer = new FileWriter("BooksTable.csv");
+            Writer writer = new FileWriter("BooksTableForExport.csv");
 
             StatefulBeanToCsv<Book> csvWriter = new StatefulBeanToCsvBuilder<Book>(writer)
                     .withSeparator(',')

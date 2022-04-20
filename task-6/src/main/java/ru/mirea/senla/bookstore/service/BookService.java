@@ -4,21 +4,20 @@ import ru.mirea.senla.bookstore.model.*;
 import ru.mirea.senla.bookstore.model.compares.CompareStrategy;
 import ru.mirea.senla.bookstore.model.csv.CsvBookReader;
 import ru.mirea.senla.bookstore.model.csv.CsvBookWriter;
-import ru.mirea.senla.bookstore.repository.BookRepository;
-import ru.mirea.senla.bookstore.repository.RequestRepository;
+import ru.mirea.senla.bookstore.repository.interfaces.IBookRepository;
+import ru.mirea.senla.bookstore.repository.interfaces.IRequestRepository;
 import ru.mirea.senla.bookstore.service.interfaces.IBookService;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 
 public class BookService implements IBookService {
 
-    private BookRepository bookRepository;
-    private RequestRepository requestRepository;
+    private IBookRepository bookRepository;
+    private IRequestRepository requestRepository;
 
-    public BookService(BookRepository bookRepository, RequestRepository requestRepository) {
+    public BookService(IBookRepository bookRepository, IRequestRepository requestRepository) {
         this.bookRepository = bookRepository;
         this.requestRepository = requestRepository;
     }

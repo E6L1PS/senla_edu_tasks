@@ -1,28 +1,28 @@
 package ru.mirea.senla.bookstore.controller;
 
 import ru.mirea.senla.bookstore.model.Book;
-import ru.mirea.senla.bookstore.repository.BookRepository;
-import ru.mirea.senla.bookstore.repository.WarehouseRepository;
-import ru.mirea.senla.bookstore.service.WarehouseService;
+import ru.mirea.senla.bookstore.repository.interfaces.IBookRepository;
+import ru.mirea.senla.bookstore.service.interfaces.IWarehouseService;
+
 import java.util.List;
 
 public class WarehouseController {
 
-    private WarehouseService warehouseService;
+    private IWarehouseService warehouseService;
 
-    public WarehouseController(WarehouseService warehouseService) {
+    public WarehouseController(IWarehouseService warehouseService) {
         this.warehouseService = warehouseService;
     }
 
-    public WarehouseService getWarehouseService() {
+    public IWarehouseService getWarehouseService() {
         return warehouseService;
     }
 
-    public WarehouseRepository getWarehouseRepository() {
+    public IBookRepository  getWarehouseRepository() {
         return warehouseService.getWarehouseRepository();
     }
 
-    public BookRepository getBookRepository() {
+    public IBookRepository getBookRepository() {
         return warehouseService.getBookRepository();
     }
 
@@ -37,4 +37,5 @@ public class WarehouseController {
     public List<Book> getStaleBooks(String key) {
         return warehouseService.getStaleBooks(key);
     }
+
 }

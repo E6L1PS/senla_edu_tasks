@@ -1,27 +1,23 @@
 package ru.mirea.senla.bookstore.controller;
 
-import ru.mirea.senla.bookstore.model.BookStatus;
 import ru.mirea.senla.bookstore.model.Customer;
 import ru.mirea.senla.bookstore.model.Order;
 import ru.mirea.senla.bookstore.model.OrderStatus;
-import ru.mirea.senla.bookstore.model.csv.CsvOrderWriter;
-import ru.mirea.senla.bookstore.service.BookService;
-import ru.mirea.senla.bookstore.service.OrderService;
+import ru.mirea.senla.bookstore.service.interfaces.IOrderService;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
 public class OrderController {
 
-    private OrderService orderService;
+    private IOrderService orderService;
 
-    public OrderController(OrderService orderService) {
+    public OrderController(IOrderService orderService) {
         this.orderService = orderService;
     }
 
-    public OrderService getOrderService() {
+    public IOrderService getOrderService() {
         return orderService;
     }
 
@@ -56,6 +52,7 @@ public class OrderController {
     public void exportOrders() {
         orderService.exportOrders();
     }
+
     public void exportOrder(int id) {
         orderService.exportOrder(id);
     }
@@ -63,4 +60,5 @@ public class OrderController {
     public void importOrders() {
         orderService.importOrders();
     }
+
 }

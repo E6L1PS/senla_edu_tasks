@@ -18,4 +18,6 @@ public interface IBookRepository {
 
     void deleteBookById(int id);
 
+    int checkPrice(List<Integer> bookIds);
+
 }

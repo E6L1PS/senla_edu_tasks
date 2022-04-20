@@ -58,6 +58,7 @@ public class BookRepository implements IBookRepository {
         books.remove(id);
     }
 
+    @Override
     public int checkPrice(List<Integer> bookIds) {
         int sum = 0;
 
