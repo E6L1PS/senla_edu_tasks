@@ -16,6 +16,18 @@ public class Request implements IEntity {
         this.number = number;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public void addRequest() {
         this.number++;
     }

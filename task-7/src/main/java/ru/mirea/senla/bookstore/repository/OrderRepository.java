@@ -1,6 +1,5 @@
 package ru.mirea.senla.bookstore.repository;
 
-import ru.mirea.senla.bookstore.model.JsonReader;
 import ru.mirea.senla.bookstore.model.Order;
 import ru.mirea.senla.bookstore.repository.interfaces.IOrderRepository;
 
@@ -32,7 +31,8 @@ public class OrderRepository implements IOrderRepository {
     @Override
     public Order updateOrder(Order order) {
         int id = order.getId();
-        orders.remove(id);
+       // orders.remove(id);
+        deleteOrderById(id);
         orders.add(id, order);
         return null;
     }
@@ -44,6 +44,6 @@ public class OrderRepository implements IOrderRepository {
 
     @Override
     public void deleteOrderById(int id) {
-        orders.remove(id);
+        orders.remove(getOrderById(id));
     }
 }

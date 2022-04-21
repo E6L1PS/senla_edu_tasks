@@ -38,7 +38,8 @@ public class Book implements IEntity, Serializable {
     @CsvDate(value = "yyyy-MM-dd")
     private LocalDate publicationDate;
 
-    @JsonIgnore
+    @JsonDeserialize(using = LocalDateDeserializer.class)
+    @JsonSerialize(using = LocalDateSerializer.class)
     @CsvBindByPosition(position = 5)
     @CsvDate(value = "yyyy-MM-dd")
     private LocalDate deliveryDate;
@@ -53,7 +54,7 @@ public class Book implements IEntity, Serializable {
         this.price = price;
         this.id = id;
         this.status = BookStatus.OUT_STOCK;
-        this.request = new Request(id, name, 0);
+        this.request = new Request(id, this.name, 0);
     }
 
     public Book(String name, LocalDate publicationDate, int price, String description, int id) {
@@ -88,6 +89,8 @@ public class Book implements IEntity, Serializable {
     }
 
     public Request getRequest() {
+        request.setName(name);
+        request.setId(id);
         return request;
     }
 

@@ -37,7 +37,7 @@ public class WarehouseRepository implements IBookRepository {
 
     @Override
     public void deleteBookById(int id) {
-        books.remove(id);
+        books.remove(getBookById(id));
     }
 
     @Override

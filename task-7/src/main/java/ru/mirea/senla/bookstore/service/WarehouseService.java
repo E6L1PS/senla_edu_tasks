@@ -38,7 +38,7 @@ public class WarehouseService implements IWarehouseService {
         bookById.setStatus(BookStatus.IN_STOCK);
         bookById.setDeliveryDate(LocalDate.now());
         warehouseRepository.addBook(bookById);
-       // System.out.println("Добавлена книга '" + bookId  + "' на склад, статус книги: " + bookRepository.getBookById(bookId).getStatus());
+        System.out.println("Добавлена книга '" + bookId  + "' на склад, статус книги: " + bookRepository.getBookById(bookId).getStatus());
 
         if (Boolean.parseBoolean( new Util().getPropertyValue("DELETING_REQUESTS"))) {
             requestRepository.deleteRequests(bookById);
@@ -48,7 +48,7 @@ public class WarehouseService implements IWarehouseService {
 
     public void removeBook(int bookId) {
         Book bookById = bookRepository.getBookById(bookId);
-        warehouseRepository.deleteBook(bookById);
+        warehouseRepository.deleteBookById(bookId);
 
         if (warehouseRepository.getBooks().stream().anyMatch(x -> x.getId() == bookId)) {
             bookById.setStatus(BookStatus.IN_STOCK);

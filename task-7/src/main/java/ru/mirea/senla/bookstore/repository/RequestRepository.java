@@ -13,7 +13,7 @@ public class RequestRepository implements IRequestRepository {
 
     @Override
     public Request getRequestById(int id) {
-        return null;
+        return requests.stream().filter(requests -> requests.getId() == id).findAny().orElse(null);
     }
 
     @Override

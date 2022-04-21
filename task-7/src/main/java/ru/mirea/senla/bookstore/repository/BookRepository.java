@@ -3,10 +3,7 @@ package ru.mirea.senla.bookstore.repository;
 import ru.mirea.senla.bookstore.model.Book;
 import ru.mirea.senla.bookstore.repository.interfaces.IBookRepository;
 
-import java.time.LocalDate;
-import java.time.Month;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class BookRepository implements IBookRepository {
@@ -36,14 +33,14 @@ public class BookRepository implements IBookRepository {
 
     @Override
     public void addBook(Book book) {
-        book.setId(countBooksId++);
+        //book.setId(countBooksId++);
         books.add(book);
     }
 
     @Override
     public Book updateBook(Book book) {
         int id = book.getId();
-        books.remove(id);
+        deleteBookById(id);
         books.add(id, book);
         return null;
     }
@@ -55,7 +52,7 @@ public class BookRepository implements IBookRepository {
 
     @Override
     public void deleteBookById(int id) {
-        books.remove(id);
+        books.remove(getBookById(id));
     }
 
     @Override

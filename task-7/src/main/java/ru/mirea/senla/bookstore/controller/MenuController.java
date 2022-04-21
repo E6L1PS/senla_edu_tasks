@@ -1,6 +1,5 @@
 package ru.mirea.senla.bookstore.controller;
 
-import ru.mirea.senla.bookstore.model.JsonReader;
 import ru.mirea.senla.bookstore.model.menu.MenuItem;
 import ru.mirea.senla.bookstore.model.menu.Navigator;
 
