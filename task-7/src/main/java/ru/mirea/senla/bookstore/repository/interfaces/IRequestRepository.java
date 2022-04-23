@@ -13,10 +13,6 @@ public interface IRequestRepository extends IRepository {
 
     void addRequest(Book book);
 
-    Request updateRequest(Request request);
-
-    void deleteRequests(Book book);
-
-    void deleteRequestsById(int id);
+    void deleteRequestsByBook(Book book);
 
 }

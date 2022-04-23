@@ -2,8 +2,8 @@ package ru.mirea.senla.bookstore.service;
 
 import ru.mirea.senla.bookstore.model.*;
 import ru.mirea.senla.bookstore.model.compares.CompareStrategy;
-import ru.mirea.senla.bookstore.model.csv.CsvOrderReader;
-import ru.mirea.senla.bookstore.model.csv.CsvOrderWriter;
+import ru.mirea.senla.bookstore.util.csv.CsvReader;
+import ru.mirea.senla.bookstore.util.csv.CsvWriter;
 import ru.mirea.senla.bookstore.repository.interfaces.IBookRepository;
 import ru.mirea.senla.bookstore.repository.interfaces.IOrderRepository;
 import ru.mirea.senla.bookstore.repository.interfaces.IRequestRepository;
@@ -11,7 +11,6 @@ import ru.mirea.senla.bookstore.service.interfaces.IOrderService;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 
 public class OrderService implements IOrderService {
@@ -73,23 +72,23 @@ public class OrderService implements IOrderService {
         }
     }
 
-    public List<Order> getSortedOrders(String key) {
+    public List<Order> getSortedOrders(String sortType) {
         List<Order> sortedOrders = new ArrayList<>(orderRepository.getOrders());
-        sortedOrders.sort(new CompareStrategy().getComparator(key));
+        sortedOrders.sort(new CompareStrategy().getComparator(sortType));
         return sortedOrders;
     }
 
-    public List<Order> getCompletedOrders(LocalDate startDate, LocalDate endDate, Comparator comparator) {
-        List<Order> diapasonCompletedOrders = new ArrayList<>();
+    public List<Order> getCompletedOrders(LocalDate startDate, LocalDate endDate, String sortType) {
+        List<Order> rangeCompletedOrders = new ArrayList<>();
 
         for (Order order : completedOrders) {
             if (order.getIssueDate().isAfter(startDate) && order.getIssueDate().isBefore(endDate)) {
-                diapasonCompletedOrders.add(order);
+                rangeCompletedOrders.add(order);
             }
         }
 
-        diapasonCompletedOrders.sort(comparator);
-        return diapasonCompletedOrders;
+        rangeCompletedOrders.sort(new CompareStrategy().getComparator(sortType));
+        return rangeCompletedOrders;
     }
 
     public int getFullPrice(LocalDate startDate, LocalDate endDate) {
@@ -117,18 +116,18 @@ public class OrderService implements IOrderService {
     }
 
     public void exportOrders() {
-        new CsvOrderWriter().writeCsvFile(orderRepository.getOrders());
+        new CsvWriter().writeCsvFile("OrdersTableForExport.csv", orderRepository.getOrders());
     }
 
     public void exportOrder(int id) {
-        new CsvOrderWriter().writeCsvFile(orderRepository.getOrderById(id));
+        new CsvWriter().writeCsvFile("OrdersTableForExport.csv", orderRepository.getOrderById(id));
     }
 
     public void importOrders() {
 
         List<Order> oldOrders = orderRepository.getOrders();
         int lastId = oldOrders.size() - 1;
-        List<Order> newOrders = new CsvOrderReader().readCsvFile();
+        List<Order> newOrders = new CsvReader().readCsvFile("OrdersTableForImport.csv", Order.class);
 
         for (Order order : newOrders) {
             if (order.getId() > lastId) {

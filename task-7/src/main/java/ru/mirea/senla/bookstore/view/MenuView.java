@@ -1,17 +1,20 @@
-package ru.mirea.senla.bookstore.controller;
+package ru.mirea.senla.bookstore.view;
 
-import ru.mirea.senla.bookstore.model.menu.MenuItem;
-import ru.mirea.senla.bookstore.model.menu.Navigator;
+import ru.mirea.senla.bookstore.controller.BookController;
+import ru.mirea.senla.bookstore.controller.OrderController;
+import ru.mirea.senla.bookstore.controller.WarehouseController;
+import ru.mirea.senla.bookstore.view.menu.MenuItem;
+import ru.mirea.senla.bookstore.view.menu.Navigator;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class MenuController {
+public class MenuView {
 
     private Navigator navigator;
 
-    public MenuController(BookController bookController, OrderController orderController, WarehouseController warehouseController) {
+    public MenuView(BookController bookController, OrderController orderController, WarehouseController warehouseController) {
         this.navigator = new Navigator(bookController, orderController, warehouseController);
     }
 

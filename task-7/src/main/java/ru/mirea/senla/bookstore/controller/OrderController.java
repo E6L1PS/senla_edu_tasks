@@ -8,7 +8,6 @@ import ru.mirea.senla.bookstore.repository.interfaces.IRequestRepository;
 import ru.mirea.senla.bookstore.service.interfaces.IOrderService;
 
 import java.time.LocalDate;
-import java.util.Comparator;
 import java.util.List;
 
 public class OrderController {
@@ -39,12 +38,12 @@ public class OrderController {
         orderService.removeOrder(orderId);
     }
 
-    public List<Order> getSortedOrders(String key) {
-        return orderService.getSortedOrders(key);
+    public List<Order> getSortedOrders(String sortType) {
+        return orderService.getSortedOrders(sortType);
     }
 
-    public List<Order> getCompletedOrders(LocalDate startDate, LocalDate endDate, Comparator comparator) {
-        return orderService.getCompletedOrders(startDate, endDate, comparator);
+    public List<Order> getCompletedOrders(LocalDate startDate, LocalDate endDate, String sortType) {
+        return orderService.getCompletedOrders(startDate, endDate, sortType);
     }
 
     public int getFullPrice(LocalDate startDate, LocalDate endDate) {

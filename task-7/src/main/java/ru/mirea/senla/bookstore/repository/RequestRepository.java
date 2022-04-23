@@ -9,7 +9,12 @@ import java.util.List;
 
 public class RequestRepository implements IRequestRepository {
 
+    private static RequestRepository instance = new RequestRepository();
     List<Request> requests = new ArrayList<>();
+
+    private RequestRepository() {
+
+    }
 
     @Override
     public Request getRequestById(int id) {
@@ -33,20 +38,14 @@ public class RequestRepository implements IRequestRepository {
     }
 
     @Override
-    public Request updateRequest(Request request) {
-        return null;
-    }
-
-    @Override
-    public void deleteRequests(Book book) {
+    public void deleteRequestsByBook(Book book) {
         Request request = book.getRequest();
         request.clearRequests();
         requests.remove(request);
     }
 
-    @Override
-    public void deleteRequestsById(int id) {
-
+    public static RequestRepository getInstance() {
+        return instance;
     }
 
 }

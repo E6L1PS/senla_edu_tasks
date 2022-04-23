@@ -8,11 +8,13 @@ public interface IOrderRepository extends IRepository {
 
     Order getOrderById(int id);
 
+    int getCountOrdersId();
+
     List<Order> getOrders();
 
     void addOrder(Order order);
 
-    Order updateOrder(Order order);
+    void updateOrder(Order order);
 
     void deleteOrder(Order order);
 

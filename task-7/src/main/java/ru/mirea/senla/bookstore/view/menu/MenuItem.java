@@ -1,4 +1,4 @@
-package ru.mirea.senla.bookstore.model.menu;
+package ru.mirea.senla.bookstore.view.menu;
 
 public class MenuItem {
 

@@ -11,8 +11,6 @@ import java.util.List;
 
 public class Order implements IEntity {
 
-    private static int countOrderId = 0;
-
     @CsvBindByPosition(position = 0)
     private int id;
 
@@ -38,7 +36,6 @@ public class Order implements IEntity {
     public Order(Customer customer, List<Integer> booksId, int price) {
         this.customer = customer;
         this.bookIds = booksId;
-        this.id = countOrderId++;
         this.price = price;
         this.status = OrderStatus.NEW;
     }

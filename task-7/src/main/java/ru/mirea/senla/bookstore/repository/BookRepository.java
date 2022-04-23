@@ -8,10 +8,11 @@ import java.util.List;
 
 public class BookRepository implements IBookRepository {
 
-    private static int countBooksId = 0;
+    private static BookRepository instance = new BookRepository();
+    private int countBooksId = 0;
     private List<Book> books= new ArrayList<Book>();
 
-    public BookRepository() {
+    private BookRepository() {
        /* books.addAll(Arrays.asList(
                 new Book("Штурм и буря", LocalDate.of(2010, Month.NOVEMBER, 22), 600, "Описание книги 'Штурм и буря'", countBooksId++),
                 new Book("Портрет Дориана Грея", LocalDate.of(2011, Month.NOVEMBER, 22), 700, "Описание книги 'Портрет Дориана Грея'", countBooksId++),
@@ -33,16 +34,15 @@ public class BookRepository implements IBookRepository {
 
     @Override
     public void addBook(Book book) {
-        //book.setId(countBooksId++);
+        book.setId(countBooksId++);
         books.add(book);
     }
 
     @Override
-    public Book updateBook(Book book) {
+    public void updateBook(Book book) {
         int id = book.getId();
         deleteBookById(id);
         books.add(id, book);
-        return null;
     }
 
     @Override
@@ -64,5 +64,9 @@ public class BookRepository implements IBookRepository {
         }
 
         return sum;
+    }
+
+    public static BookRepository getInstance() {
+        return instance;
     }
 }

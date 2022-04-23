@@ -1,10 +1,14 @@
 package ru.mirea.senla.bookstore;
 
 import ru.mirea.senla.bookstore.controller.BookController;
-import ru.mirea.senla.bookstore.controller.MenuController;
+import ru.mirea.senla.bookstore.repository.BookRepository;
+import ru.mirea.senla.bookstore.repository.OrderRepository;
+import ru.mirea.senla.bookstore.repository.RequestRepository;
+import ru.mirea.senla.bookstore.repository.WarehouseRepository;
+import ru.mirea.senla.bookstore.view.MenuView;
 import ru.mirea.senla.bookstore.controller.OrderController;
 import ru.mirea.senla.bookstore.controller.WarehouseController;
-import ru.mirea.senla.bookstore.model.json.JsonReader;
+import ru.mirea.senla.bookstore.util.json.JsonReader;
 import ru.mirea.senla.bookstore.repository.interfaces.IBookRepository;
 import ru.mirea.senla.bookstore.repository.interfaces.IOrderRepository;
 import ru.mirea.senla.bookstore.repository.interfaces.IRequestRepository;
@@ -17,11 +21,12 @@ import ru.mirea.senla.bookstore.service.interfaces.IWarehouseService;
 
 public class Main {
     public static void main(String[] args) {
+        JsonReader reader = new JsonReader();
 
-        IBookRepository bookRepository = new JsonReader().readBookRepository("Library.json");
-        IOrderRepository orderRepository = new JsonReader().readOrderRepository("Orders.json");
-        IBookRepository warehouseRepository = new JsonReader().readBookRepository("Warehouse.json");
-        IRequestRepository requestRepository = new JsonReader().readRequestRepository("Requests.json");
+        IBookRepository bookRepository = reader.readRepository("Library.json", BookRepository.getInstance());
+        IOrderRepository orderRepository = reader.readRepository("Orders.json", OrderRepository.getInstance());
+        IBookRepository warehouseRepository = reader.readRepository("Warehouse.json", WarehouseRepository.getInstance());
+        IRequestRepository requestRepository = reader.readRepository("Requests.json", RequestRepository.getInstance());
 
         IBookService bookService = new BookService(bookRepository, requestRepository);
         IOrderService orderService = new OrderService(orderRepository, bookRepository, requestRepository);
@@ -31,9 +36,9 @@ public class Main {
         OrderController orderController = new OrderController(orderService);
         WarehouseController warehouseController = new WarehouseController(warehouseService);
 
-        MenuController menuController = new MenuController(bookController, orderController, warehouseController);
+        MenuView menuView = new MenuView(bookController, orderController, warehouseController);
 
-        menuController.run();
+        menuView.run();
 
     }
 }

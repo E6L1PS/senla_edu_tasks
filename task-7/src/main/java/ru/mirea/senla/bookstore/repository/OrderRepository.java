@@ -8,10 +8,19 @@ import java.util.List;
 
 public class OrderRepository implements IOrderRepository {
 
+    private static OrderRepository instance = new OrderRepository();
+    private int countOrdersId = 0;
     private List<Order> orders = new ArrayList<>();
 
-    public OrderRepository() {
+    private OrderRepository() {
+
     }
+
+    @Override
+    public int getCountOrdersId() {
+        return countOrdersId;
+    }
+
 
     @Override
     public Order getOrderById(int id) {
@@ -25,16 +34,16 @@ public class OrderRepository implements IOrderRepository {
 
     @Override
     public void addOrder(Order order) {
+        order.setId(countOrdersId++);
         orders.add(order);
     }
 
     @Override
-    public Order updateOrder(Order order) {
+    public void updateOrder(Order order) {
         int id = order.getId();
        // orders.remove(id);
         deleteOrderById(id);
         orders.add(id, order);
-        return null;
     }
 
     @Override
@@ -45,5 +54,9 @@ public class OrderRepository implements IOrderRepository {
     @Override
     public void deleteOrderById(int id) {
         orders.remove(getOrderById(id));
+    }
+
+    public static OrderRepository getInstance() {
+        return instance;
     }
 }

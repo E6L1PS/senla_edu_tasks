@@ -1,4 +1,4 @@
-package ru.mirea.senla.bookstore.model.menu;
+package ru.mirea.senla.bookstore.view.menu;
 
 import ru.mirea.senla.bookstore.controller.BookController;
 import ru.mirea.senla.bookstore.controller.OrderController;

@@ -22,7 +22,7 @@ public interface IOrderService {
 
     List<Order> getSortedOrders(String key);
 
-    List<Order> getCompletedOrders(LocalDate startDate, LocalDate endDate, Comparator comparator);
+    List<Order> getCompletedOrders(LocalDate startDate, LocalDate endDate, String sortType);
 
     int getFullPrice(LocalDate startDate, LocalDate endDate);
 

@@ -1,25 +1,24 @@
-package ru.mirea.senla.bookstore.model;
+package ru.mirea.senla.bookstore.util;
 
 import java.io.FileReader;
-import java.io.IOException;
 import java.io.Reader;
 import java.util.Properties;
 
-public class Util {
+public class PropertyUtil {
+
+    private static final String filePath = "src\\main\\resources\\application.properties";
 
     public String getPropertyValue(String key) {
         String propertyValue = "";
         Properties properties = new Properties();
 
-        try {
-            Reader reader = new FileReader("src\\main\\resources\\application.properties");
+        try(Reader reader = new FileReader(filePath)) {
+            //ClassLoader.getSystemClassLoader().getResource("application.properties").getPath();
             properties.load(reader);
-            reader.close();
             propertyValue = properties.getProperty(key);
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return propertyValue;
     }
-
 }

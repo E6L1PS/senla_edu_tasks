@@ -1,4 +1,4 @@
-package ru.mirea.senla.bookstore.model.menu;
+package ru.mirea.senla.bookstore.view.menu;
 
 import ru.mirea.senla.bookstore.controller.BookController;
 import ru.mirea.senla.bookstore.controller.OrderController;
@@ -6,7 +6,7 @@ import ru.mirea.senla.bookstore.controller.WarehouseController;
 import ru.mirea.senla.bookstore.model.*;
 import ru.mirea.senla.bookstore.model.compares.ordercompares.CompareOrderByDate;
 import ru.mirea.senla.bookstore.model.compares.ordercompares.CompareOrderByStatus;
-import ru.mirea.senla.bookstore.model.json.JsonWriter;
+import ru.mirea.senla.bookstore.util.json.JsonWriter;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -53,9 +53,9 @@ public class MainMenu extends Menu {
                                                 new MenuItem("1. Оставить запрос на книгу", () -> bookController.addRequest(new Scanner(System.in).nextInt()),null),
                                                 new MenuItem("2. Сортировать запросы по алфавиту", () -> System.out.println(bookController.getRequestBooks("RequestByAlphabetical")),null),
                                                 new MenuItem("3. Сортировать запросы по количеству", () -> System.out.println(bookController.getRequestBooks("RequestByNumber")),null),
-                                                new MenuItem("4. Импорт запросов", () -> bookController.exportBook(new Scanner(System.in).nextInt()), null),
-                                                new MenuItem("5. Экспорт запросов", () -> bookController.exportBook(new Scanner(System.in).nextInt()), null),
-                                                new MenuItem("6. Экспорт запроса", () -> bookController.exportBook(new Scanner(System.in).nextInt()), null)
+                                                new MenuItem("4. Импорт запросов", () -> System.out.println("-"), null),
+                                                new MenuItem("5. Экспорт запросов", () -> System.out.println("-"), null),
+                                                new MenuItem("6. Экспорт запроса", () -> System.out.println("-"), null)
                                         }))
                         })),
 
@@ -115,7 +115,7 @@ public class MainMenu extends Menu {
                                                     year = sc.nextInt();
                                                     LocalDate dateEnd = LocalDate.of(year, mouth, day);
 
-                                                    System.out.println(orderController.getCompletedOrders(dateStart, dateEnd, new CompareOrderByDate()));
+                                                    System.out.println(orderController.getCompletedOrders(dateStart, dateEnd, "OrderByDate"));
                                                 }, null),
                                                 new MenuItem("2. Сортировать выполненные заказы по цене", () -> {
                                                     Scanner sc = new Scanner(System.in);
@@ -137,7 +137,7 @@ public class MainMenu extends Menu {
                                                     year = sc.nextInt();
                                                     LocalDate dateEnd = LocalDate.of(year, mouth, day);
 
-                                                    System.out.println(orderController.getCompletedOrders(dateStart, dateEnd, new CompareOrderByStatus()));
+                                                    System.out.println(orderController.getCompletedOrders(dateStart, dateEnd, "OrderByPrice"));
                                                 }, null),
                                                 new MenuItem("3. Показать сумму заработанных средств за период времени", () -> {
                                                     Scanner sc = new Scanner(System.in);

@@ -13,7 +13,7 @@ public interface IBookRepository extends IRepository {
 
     void addBook(Book book);
 
-    Book updateBook(Book book);
+    void updateBook(Book book);
 
     void deleteBook(Book book);
 

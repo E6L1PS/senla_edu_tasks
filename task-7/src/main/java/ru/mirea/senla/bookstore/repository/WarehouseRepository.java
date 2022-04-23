@@ -8,7 +8,12 @@ import java.util.List;
 
 public class WarehouseRepository implements IBookRepository {
 
+    private static WarehouseRepository instance = new WarehouseRepository();
     private List<Book> books = new ArrayList<>();
+
+    private WarehouseRepository() {
+
+    }
 
     @Override
     public Book getBookById(int id) {
@@ -26,8 +31,7 @@ public class WarehouseRepository implements IBookRepository {
     }
 
     @Override
-    public Book updateBook(Book book) {
-        return null;
+    public void updateBook(Book book) {
     }
 
     @Override
@@ -42,7 +46,17 @@ public class WarehouseRepository implements IBookRepository {
 
     @Override
     public int checkPrice(List<Integer> bookIds) {
-        return 0;
+        int sum = 0;
+
+        for (Integer bookId : bookIds) {
+            sum += books.get(bookId).getPrice();
+        }
+
+        return sum;
+    }
+
+    public static WarehouseRepository getInstance() {
+        return instance;
     }
 
 }

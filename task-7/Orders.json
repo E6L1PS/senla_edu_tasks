@@ -1,1 +1,0 @@
-{"orders":[{"id":0,"price":2924,"customer":null,"bookIds":[1,2,3],"status":"NEW","issueDate":[2022,4,21]},{"id":1,"price":8211,"customer":null,"bookIds":[3,4,5,6,7],"status":"NEW","issueDate":[2022,4,21]},{"id":2,"price":7610,"customer":null,"bookIds":[9,0],"status":"NEW","issueDate":[2022,4,21]}]}
