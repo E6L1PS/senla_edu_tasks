@@ -10,11 +10,12 @@ import java.util.List;
 @Singleton
 public class OrderRepository implements IOrderRepository {
 
-    private int countOrdersId = 0;
+    private static int countOrdersId;
     private List<Order> orders;
 
     public OrderRepository() {
         orders = new JsonReader().readRepository("Orders.json", Order.class);
+        countOrdersId = orders.size();
     }
 
     @Override

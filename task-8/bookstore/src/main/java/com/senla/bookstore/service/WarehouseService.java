@@ -4,6 +4,7 @@ import com.senla.bookstore.model.Book;
 import com.senla.bookstore.model.BookStatus;
 import com.senla.bookstore.repository.interfaces.IBookRepository;
 import com.senla.bookstore.repository.interfaces.IRequestRepository;
+import com.senla.bookstore.repository.interfaces.IWarehouseRepository;
 import com.senla.bookstore.service.interfaces.IWarehouseService;
 import com.senla.bookstore.model.compares.CompareStrategy;
 import com.senla.configure.annotations.Autowired;
@@ -18,7 +19,7 @@ import java.util.List;
 public class WarehouseService implements IWarehouseService {
 
     @Autowired
-    private IBookRepository warehouseRepository;
+    private IWarehouseRepository warehouseRepository;
 
     @Autowired
     private IBookRepository  bookRepository;
@@ -27,16 +28,16 @@ public class WarehouseService implements IWarehouseService {
     private IRequestRepository requestRepository;
 
     @ConfigProperty
-    String deletingRequests;
+    private String deletingRequests;
 
     @ConfigProperty
-    String numberMonthForStale;
+    private String numberMonthForStale;
 
     public WarehouseService() {
 
     }
 
-    public IBookRepository getWarehouseRepository() {
+    public IWarehouseRepository getWarehouseRepository() {
         return warehouseRepository;
     }
 

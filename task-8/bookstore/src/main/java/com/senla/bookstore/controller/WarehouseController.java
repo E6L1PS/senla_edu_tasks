@@ -2,6 +2,7 @@ package com.senla.bookstore.controller;
 
 import com.senla.bookstore.model.Book;
 import com.senla.bookstore.repository.interfaces.IBookRepository;
+import com.senla.bookstore.repository.interfaces.IWarehouseRepository;
 import com.senla.bookstore.service.interfaces.IWarehouseService;
 import com.senla.configure.annotations.Autowired;
 import com.senla.configure.annotations.Singleton;
@@ -22,7 +23,7 @@ public class WarehouseController {
         return warehouseService;
     }
 
-    public IBookRepository getWarehouseRepository() {
+    public IWarehouseRepository getWarehouseRepository() {
         return warehouseService.getWarehouseRepository();
     }
 

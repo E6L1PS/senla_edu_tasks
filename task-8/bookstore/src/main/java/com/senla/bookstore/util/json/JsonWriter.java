@@ -1,8 +1,6 @@
 package com.senla.bookstore.util.json;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.senla.bookstore.model.IEntity;
-import com.senla.bookstore.repository.interfaces.IRepository;
 
 import java.io.FileWriter;
 import java.io.Writer;

@@ -4,6 +4,7 @@ import com.senla.bookstore.model.Book;
 import com.senla.bookstore.repository.interfaces.IWarehouseRepository;
 import com.senla.bookstore.util.json.JsonReader;
 import com.senla.configure.annotations.Singleton;
+
 import java.util.List;
 
 @Singleton
@@ -31,7 +32,7 @@ public class WarehouseRepository implements IWarehouseRepository {
     }
 
     @Override
-     public void updateBook(Book book) {
+    public void updateBook(Book book) {
     }
 
     @Override

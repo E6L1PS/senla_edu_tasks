@@ -10,11 +10,12 @@ import java.util.List;
 @Singleton
 public class BookRepository implements IBookRepository {
 
-    private int countBooksId = 0;
+    private static int countBooksId;
     private List<Book> books;
 
     public BookRepository() {
         books = new JsonReader().readRepository("Library.json", Book.class);
+        countBooksId = books.size();
     }
 
     public int getCountBooksId() {

@@ -2,12 +2,13 @@ package com.senla.bookstore.service.interfaces;
 
 import com.senla.bookstore.model.Book;
 import com.senla.bookstore.repository.interfaces.IBookRepository;
+import com.senla.bookstore.repository.interfaces.IWarehouseRepository;
 
 import java.util.List;
 
 public interface IWarehouseService {
 
-    IBookRepository getWarehouseRepository();
+    IWarehouseRepository getWarehouseRepository();
 
     IBookRepository getBookRepository();
 
