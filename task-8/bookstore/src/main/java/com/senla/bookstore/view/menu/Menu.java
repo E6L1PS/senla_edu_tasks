@@ -18,8 +18,10 @@ public class Menu {
 
     @Autowired
     private BookController bookController;
+
     @Autowired
     private OrderController orderController;
+
     @Autowired
     private WarehouseController warehouseController;
 
@@ -28,6 +30,7 @@ public class Menu {
     private MenuItem[] menuItems;
 
     public Menu() {
+
     }
 
     public Menu(String name, MenuItem[] menuItems) {
@@ -41,11 +44,10 @@ public class Menu {
         this.menuItems = new MenuItem[]{
                 new MenuItem("0. <--- Выход", () -> {
                     System.out.println("Программа завершена");
-                    JsonWriter jsonWriter = new JsonWriter();
-                    jsonWriter.write(warehouseController.getBookRepository().getBooks(), "Library.json");
-                    jsonWriter.write(warehouseController.getWarehouseRepository().getBooks(), "Warehouse.json");
-                    jsonWriter.write(orderController.getOrderRepository().getOrders(), "Orders.json");
-                    jsonWriter.write(orderController.getRequestRepository().getRequests(), "Requests.json");
+                    JsonWriter.write(warehouseController.getBookRepository().getBooks(), "Library.json");
+                    JsonWriter.write(warehouseController.getWarehouseRepository().getBooks(), "Warehouse.json");
+                    JsonWriter.write(orderController.getOrderRepository().getOrders(), "Orders.json");
+                    JsonWriter.write(orderController.getRequestRepository().getRequests(), "Requests.json");
                 }, null),
                 new MenuItem("1. Сервис книг", () -> System.out.println("\nВведите номер пункта"),
                         new Menu("Сервис книг", new MenuItem[]{
@@ -57,7 +59,10 @@ public class Menu {
                                 new MenuItem("5. Сортировать по id", () -> System.out.println(bookController.getBooks()), null),
                                 new MenuItem("6. Импорт книг", () -> bookController.importBooks(), null),
                                 new MenuItem("7. Экспорт книг", () -> bookController.exportBooks(), null),
-                                new MenuItem("8. Экспорт книги", () -> bookController.exportBook(new Scanner(System.in).nextInt()), null),
+                                new MenuItem("8. Экспорт книги", () -> {
+                                    System.out.println("Введите id книги, которую хотите экспортировать");
+                                    bookController.exportBook(new Scanner(System.in).nextInt());
+                                }, null),
                                 new MenuItem("9. Посмотреть описание книги", () -> {
                                     System.out.println("Введите id книги");
                                     System.out.println(bookController.getDescription(new Scanner(System.in).nextInt()));
@@ -67,10 +72,7 @@ public class Menu {
                                                 new MenuItem("0. <--- Назад", () -> System.out.println("\nВведите номер пункта"), null),
                                                 new MenuItem("1. Оставить запрос на книгу", () -> bookController.addRequest(new Scanner(System.in).nextInt()), null),
                                                 new MenuItem("2. Сортировать запросы по алфавиту", () -> System.out.println(bookController.getRequestBooks("RequestByAlphabetical")), null),
-                                                new MenuItem("3. Сортировать запросы по количеству", () -> System.out.println(bookController.getRequestBooks("RequestByNumber")), null),
-                                                new MenuItem("4. Импорт запросов", () -> System.out.println("-"), null),
-                                                new MenuItem("5. Экспорт запросов", () -> System.out.println("-"), null),
-                                                new MenuItem("6. Экспорт запроса", () -> System.out.println("-"), null)
+                                                new MenuItem("3. Сортировать запросы по количеству", () -> System.out.println(bookController.getRequestBooks("RequestByNumber")), null)
                                         }))
                         })),
 
@@ -106,7 +108,10 @@ public class Menu {
                                 new MenuItem("6. Сортировать заказы по статусу", () -> System.out.println(orderController.getSortedOrders("OrderByStatus")), null),
                                 new MenuItem("7. Импорт заказов", () -> orderController.importOrders(), null),
                                 new MenuItem("8. Экспорт заказов", () -> orderController.exportOrders(), null),
-                                new MenuItem("9. Экспорт заказа", () -> orderController.exportOrder(new Scanner(System.in).nextInt()), null),
+                                new MenuItem("9. Экспорт заказа", () -> {
+                                    System.out.println("Введите id заказа, который хотите экспортировать");
+                                    orderController.exportOrder(new Scanner(System.in).nextInt());
+                                }, null),
                                 new MenuItem("10. Выполненные заказы", () -> System.out.println("\nВведите номер пункта"),
                                         new Menu("Выполненные заказы", new MenuItem[]{
                                                 new MenuItem("0. <--- Назад", () -> System.out.println("\nВведите номер пункта"), null),

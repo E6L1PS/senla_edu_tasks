@@ -24,6 +24,9 @@ public class BookService implements IBookService {
     @Autowired
     private IRequestRepository requestRepository;
 
+    @Autowired
+    private CompareStrategy compareStrategy;
+
     public BookService() {
 
     }
@@ -34,7 +37,7 @@ public class BookService implements IBookService {
 
     public List<Book> getSortedBooks(String sortType) {
         List<Book> sortedBooks = new ArrayList<>(bookRepository.getBooks());
-        sortedBooks.sort(new CompareStrategy().getComparator(sortType));
+        sortedBooks.sort(compareStrategy.getComparator(sortType));
         return sortedBooks;
     }
 
@@ -44,7 +47,7 @@ public class BookService implements IBookService {
 
     public List<Request> getRequestBooks(String sortType) {
         List<Request> sortedRequests = new ArrayList<>(requestRepository.getRequests());
-        sortedRequests.sort(new CompareStrategy().getComparator(sortType));
+        sortedRequests.sort(compareStrategy.getComparator(sortType));
         return sortedRequests;
     }
 
@@ -58,17 +61,17 @@ public class BookService implements IBookService {
     }
 
     public void exportBook(int bookId) {
-        new CsvWriter().writeCsvFile("BooksTableForExport.csv", bookRepository.getBookById(bookId));
+        CsvWriter.writeCsvFile("BooksTableForExport.csv", bookRepository.getBookById(bookId));
     }
 
     public void exportBooks() {
-        new CsvWriter().writeCsvFile("BooksTableForExport.csv", bookRepository.getBooks());
+        CsvWriter.writeCsvFile("BooksTableForExport.csv", bookRepository.getBooks());
     }
 
     public void importBooks() {
         List<Book> oldBooks = bookRepository.getBooks();
         int lastId = oldBooks.size() - 1;
-        List<Book> newBooks = new CsvReader().readCsvFile("BooksTableForImport.csv", Book.class);
+        List<Book> newBooks = CsvReader.readCsvFile("BooksTableForImport.csv", Book.class);
 
         for (Book book : newBooks) {
             if (book.getId() > lastId) {

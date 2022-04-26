@@ -10,7 +10,7 @@ public class CsvReader {
 
     private static final String filePath = "bookstore\\src\\main\\csvtables\\";
 
-    public <T> List<T> readCsvFile(String fileName, Class<T> t) {
+    public static <T> List<T> readCsvFile(String fileName, Class<T> t) {
 
         try (Reader reader = new FileReader(filePath + fileName)) {
 

@@ -14,7 +14,7 @@ public class BookRepository implements IBookRepository {
     private List<Book> books;
 
     public BookRepository() {
-        books = new JsonReader().readRepository("Library.json", Book.class);
+        books = JsonReader.readRepository("Library.json", Book.class);
         countBooksId = books.size();
     }
 

@@ -10,7 +10,7 @@ public class JsonWriter {
 
     private static final String filePath = "bookstore\\src\\main\\jsonfiles\\";
 
-    public<T> void write(List<T> repository, String fileName) {
+    public static <T> void write(List<T> repository, String fileName) {
 
         ObjectMapper objectMapper = new ObjectMapper();
 

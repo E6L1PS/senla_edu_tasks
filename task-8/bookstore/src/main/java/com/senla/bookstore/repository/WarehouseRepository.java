@@ -13,7 +13,7 @@ public class WarehouseRepository implements IWarehouseRepository {
     private List<Book> books;
 
     public WarehouseRepository() {
-        books = new JsonReader().readRepository("Warehouse.json", Book.class);
+        books = JsonReader.readRepository("Warehouse.json", Book.class);
     }
 
     @Override

@@ -12,22 +12,13 @@ public class CsvWriter {
 
     private static final String filePath = "bookstore\\src\\main\\csvtables\\";
 
-    public <T> void writeCsvFile(String fileName, T entity) {
-
-        try (Writer writer = new FileWriter(filePath + fileName)) {
-            StatefulBeanToCsv<T> csvWriter = new StatefulBeanToCsvBuilder<T>(writer)
-                    .withSeparator(',')
-                    .build();
-
-            List<T> entities = new ArrayList<>();
-            entities.add(entity);
-            csvWriter.write(entities);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
+    public static <T> void writeCsvFile(String fileName, T entity) {
+        List<T> entities = new ArrayList<>();
+        entities.add(entity);
+        writeCsvFile(fileName, entities);
     }
 
-    public <T> void writeCsvFile(String fileName, List<T> entities) {
+    public static <T> void writeCsvFile(String fileName, List<T> entities) {
 
         try (Writer writer = new FileWriter(filePath + fileName)) {
             StatefulBeanToCsv<T> csvWriter = new StatefulBeanToCsvBuilder<T>(writer)

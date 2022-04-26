@@ -11,9 +11,11 @@ import com.senla.bookstore.model.compares.requestcompares.CompareRequestByAlphab
 import com.senla.bookstore.model.compares.requestcompares.CompareRequestByNumber;
 import com.senla.bookstore.model.compares.warehouscompares.CompareWarehouseByDate;
 import com.senla.bookstore.model.compares.warehouscompares.CompareWarehouseByPrice;
+import com.senla.configure.annotations.Singleton;
 
 import java.util.*;
 
+@Singleton
 public class CompareStrategy {
 
     Map<String, Comparator> comparatorMap = new HashMap<>();
@@ -30,7 +32,6 @@ public class CompareStrategy {
 
         this.comparatorMap.put("RequestByAlphabetical", new CompareRequestByAlphabetical());
         this.comparatorMap.put("RequestByNumber", new CompareRequestByNumber());
-
 
         this.comparatorMap.put("WarehouseByDate", new CompareWarehouseByDate());
         this.comparatorMap.put("WarehouseByPrice", new CompareWarehouseByPrice());

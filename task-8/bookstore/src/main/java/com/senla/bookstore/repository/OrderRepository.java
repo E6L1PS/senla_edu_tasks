@@ -14,7 +14,7 @@ public class OrderRepository implements IOrderRepository {
     private List<Order> orders;
 
     public OrderRepository() {
-        orders = new JsonReader().readRepository("Orders.json", Order.class);
+        orders = JsonReader.readRepository("Orders.json", Order.class);
         countOrdersId = orders.size();
     }
 

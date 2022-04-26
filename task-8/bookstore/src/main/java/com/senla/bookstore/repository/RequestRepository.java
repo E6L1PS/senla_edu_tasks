@@ -14,7 +14,7 @@ public class RequestRepository implements IRequestRepository {
     private List<Request> requests;
 
     public RequestRepository() {
-        requests = new JsonReader().readRepository("Requests.json", Request.class);
+        requests = JsonReader.readRepository("Requests.json", Request.class);
     }
 
     @Override
@@ -44,6 +44,5 @@ public class RequestRepository implements IRequestRepository {
         request.clearRequests();
         requests.remove(request);
     }
-
 
 }

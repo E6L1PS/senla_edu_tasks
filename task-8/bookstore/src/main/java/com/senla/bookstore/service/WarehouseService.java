@@ -27,6 +27,9 @@ public class WarehouseService implements IWarehouseService {
     @Autowired
     private IRequestRepository requestRepository;
 
+    @Autowired
+    private CompareStrategy compareStrategy;
+
     @ConfigProperty
     private String deletingRequests;
 
@@ -75,7 +78,7 @@ public class WarehouseService implements IWarehouseService {
     public List<Book> getStaleBooks(String sortType) {
         List<Book> staleBooks = new ArrayList<>();
         setStaleBooks(staleBooks);
-        staleBooks.sort(new CompareStrategy().getComparator(sortType));
+        staleBooks.sort(compareStrategy.getComparator(sortType));
         return staleBooks;
     }
 

@@ -27,6 +27,9 @@ public class OrderService implements IOrderService {
     @Autowired
     private IRequestRepository requestRepository;
 
+    @Autowired
+    private CompareStrategy compareStrategy;
+
     private List<Order> completedOrders = new ArrayList<>();
 
     public OrderService() {
@@ -80,7 +83,7 @@ public class OrderService implements IOrderService {
 
     public List<Order> getSortedOrders(String sortType) {
         List<Order> sortedOrders = new ArrayList<>(orderRepository.getOrders());
-        sortedOrders.sort(new CompareStrategy().getComparator(sortType));
+        sortedOrders.sort(compareStrategy.getComparator(sortType));
         return sortedOrders;
     }
 
@@ -93,7 +96,7 @@ public class OrderService implements IOrderService {
             }
         }
 
-        rangeCompletedOrders.sort(new CompareStrategy().getComparator(sortType));
+        rangeCompletedOrders.sort(compareStrategy.getComparator(sortType));
         return rangeCompletedOrders;
     }
 
@@ -122,18 +125,18 @@ public class OrderService implements IOrderService {
     }
 
     public void exportOrders() {
-        new CsvWriter().writeCsvFile("OrdersTableForExport.csv", orderRepository.getOrders());
+        CsvWriter.writeCsvFile("OrdersTableForExport.csv", orderRepository.getOrders());
     }
 
     public void exportOrder(int id) {
-        new CsvWriter().writeCsvFile("OrdersTableForExport.csv", orderRepository.getOrderById(id));
+        CsvWriter.writeCsvFile("OrdersTableForExport.csv", orderRepository.getOrderById(id));
     }
 
     public void importOrders() {
 
         List<Order> oldOrders = orderRepository.getOrders();
         int lastId = oldOrders.size() - 1;
-        List<Order> newOrders = new CsvReader().readCsvFile("OrdersTableForImport.csv", Order.class);
+        List<Order> newOrders = CsvReader.readCsvFile("OrdersTableForImport.csv", Order.class);
 
         for (Order order : newOrders) {
             if (order.getId() > lastId) {
