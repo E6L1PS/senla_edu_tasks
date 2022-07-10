@@ -1,7 +1,6 @@
 package com.senla.bookstore.service;
 
 import com.senla.bookstore.model.Book;
-import com.senla.bookstore.model.BookId;
 import com.senla.bookstore.model.BookStatus;
 import com.senla.bookstore.model.Warehouse;
 import com.senla.bookstore.repository.CustomerRepository;
@@ -15,10 +14,9 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.lang.reflect.Array;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 @Log4j2
@@ -59,13 +57,14 @@ public class WarehouseService implements IWarehouseService {
         return bookRepository;
     }
 
+    @Transactional
     public void addBook(Integer bookId) {
         Book bookById = bookRepository.findEntityById(bookId);
 
         //TODO set status in book table
 
         bookById.setStatus(BookStatus.IN_STOCK);
-        warehouseRepository.create(new Warehouse(new ArrayList<>(List.of(bookById)), LocalDate.now()));
+        warehouseRepository.create(new Warehouse(bookById, LocalDate.now()));
         System.out.println("Добавлена книга '" + bookId + "' на склад, статус книги: " + bookById.getStatus());
 
         if (Boolean.parseBoolean(deletingRequests)) {
@@ -74,6 +73,7 @@ public class WarehouseService implements IWarehouseService {
 
     }
 
+    @Transactional
     public void removeBook(Integer bookId) {
         List<Book> books = warehouseRepository.findAll();
         Book bookById = bookRepository.findEntityById(bookId);
@@ -88,24 +88,30 @@ public class WarehouseService implements IWarehouseService {
         System.out.println("Снята книга '" + bookId + "' со склада, статус книги: " + bookRepository.findEntityById(bookId).getStatus());
     }
 
-    public List<Book> getStaleBooks(String sortType) {
-        List<Book> staleBooks = new ArrayList<>();
-        setStaleBooks(staleBooks);
-        staleBooks.sort(compareStrategy.getComparator(sortType));
-        return staleBooks;
+    @Override
+    public List<Book> getStaleBooks(String key) {
+        return null;
     }
 
-    public void setStaleBooks(List<Book> staleBooks) {
-        //  int numberMonthForStale = Integer.parseInt(new PropertyUtil().getPropertyValue("NUMBER_MONTHS_FOR_STALE"));
-        List<Book> books = warehouseRepository.findAll();
-        for (Book book : books) {
-            if (book.getDeliveryDate() != null) {
-                if (LocalDate.now().minusMonths(Integer.parseInt(numberMonthForStale)).isAfter(book.getDeliveryDate())) {
-                    staleBooks.add(book);
-                }
-            }
-        }
-    }
+//
+//    public List<Book> getStaleBooks(String sortType) {
+//        List<Book> staleBooks = new ArrayList<>();
+//        setStaleBooks(staleBooks);
+//        staleBooks.sort(compareStrategy.getComparator(sortType));
+//        return staleBooks;
+//    }
+//
+//    public void setStaleBooks(List<Book> staleBooks) {
+//        //  int numberMonthForStale = Integer.parseInt(new PropertyUtil().getPropertyValue("NUMBER_MONTHS_FOR_STALE"));
+//        List<Book> books = warehouseRepository.findAll();
+//        for (Book book : books) {
+//            if (book.getDeliveryDate() != null) {
+//                if (LocalDate.now().minusMonths(Integer.parseInt(numberMonthForStale)).isAfter(book.getDeliveryDate())) {
+//                    staleBooks.add(book);
+//                }
+//            }
+//        }
+//    }
 
     public String getNumberMonthForStale() {
         return numberMonthForStale;

@@ -8,14 +8,14 @@
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd
-        http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
         http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx-4.3.xsd
         http://www.springframework.org/schema/data/jpa
         http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 
     <context:component-scan base-package="com.senla.bookstore"/>
 
-<!--    <tx:annotation-driven transaction-manager="txManager"/>-->
+    <tx:annotation-driven transaction-manager="txManager"/>
 
     <jpa:repositories base-package="com.senla.bookstore"
                       entity-manager-factory-ref="entityManagerFactory"
@@ -47,7 +47,11 @@
         </property>
     </bean>
 
-    <bean id="txManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+    <bean id="txManager"
+          class="org.springframework.orm.jpa.JpaTransactionManager">
         <property name="entityManagerFactory" ref="entityManagerFactory"/>
     </bean>
+
+
+
 </beans>

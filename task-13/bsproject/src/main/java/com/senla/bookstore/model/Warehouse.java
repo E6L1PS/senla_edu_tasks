@@ -15,6 +15,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.io.Serializable;
@@ -27,22 +28,28 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-@ToString
 public class Warehouse implements Serializable, IEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer warehouseId;
+    private Integer id;
 
-    @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER, mappedBy = "id")
-    @Column(name = "book_id")
-    private List<Book> bookIds;
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
+    private Book book;
 
     @Column(name = "delivery_date")
     private LocalDate deliveryDate;
 
-    public Warehouse(List<Book> bookIds, LocalDate deliveryDate) {
-        this.bookIds = bookIds;
+    public Warehouse(Book book, LocalDate deliveryDate) {
+        this.book = book;
         this.deliveryDate = deliveryDate;
+    }
+
+    @Override
+    public String toString() {
+        return "Warehouse{" +
+                "[deliveryDate:" + deliveryDate +
+                "]" + book +
+                "}\n";
     }
 }

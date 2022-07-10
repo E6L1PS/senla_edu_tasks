@@ -8,10 +8,12 @@ import org.springframework.stereotype.Component;
 import javax.persistence.EntityManager;
 import java.util.List;
 
-//TODO убрать warehouse из бд
 @Component
 public class WarehouseRepository extends AbstractRepository<Integer, Warehouse> implements IWarehouseRepository<Integer, Warehouse> {
 
+    public WarehouseRepository() {
+        setClazz(Warehouse.class);
+    }
     @Override
     public EntityManager getEntityManager() {
         return super.getEntityManager();

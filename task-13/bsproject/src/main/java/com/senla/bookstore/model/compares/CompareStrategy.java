@@ -9,8 +9,6 @@ import com.senla.bookstore.model.compares.ordercompares.CompareOrderByPrice;
 import com.senla.bookstore.model.compares.ordercompares.CompareOrderByStatus;
 import com.senla.bookstore.model.compares.requestcompares.CompareRequestByAlphabetical;
 import com.senla.bookstore.model.compares.requestcompares.CompareRequestByNumber;
-import com.senla.bookstore.model.compares.warehouscompares.CompareWarehouseByDate;
-import com.senla.bookstore.model.compares.warehouscompares.CompareWarehouseByPrice;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -33,9 +31,6 @@ public class CompareStrategy {
 
         this.comparatorMap.put("RequestByAlphabetical", new CompareRequestByAlphabetical());
         this.comparatorMap.put("RequestByNumber", new CompareRequestByNumber());
-
-        this.comparatorMap.put("WarehouseByDate", new CompareWarehouseByDate());
-        this.comparatorMap.put("WarehouseByPrice", new CompareWarehouseByPrice());
     }
 
     public Comparator getComparator(String key) {

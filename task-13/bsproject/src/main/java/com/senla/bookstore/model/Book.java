@@ -18,15 +18,13 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.Type;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -51,6 +49,7 @@ public class Book implements IEntity, Serializable {
 
     private String description;
     @Enumerated(EnumType.STRING)
+    @Type(type = "com.senla.bookstore.util.EnumTypePostgreSql")
     private BookStatus status;
 
     @OneToOne(cascade = {CascadeType.REFRESH}, fetch = FetchType.LAZY)
@@ -63,12 +62,6 @@ public class Book implements IEntity, Serializable {
     @CsvDate(value = "yyyy-MM-dd")
     @Column(name = "publication_date")
     private LocalDate publicationDate;
-
-    @JsonDeserialize(using = LocalDateDeserializer.class)
-    @JsonSerialize(using = LocalDateSerializer.class)
-    @CsvDate(value = "yyyy-MM-dd")
-    @Column(name = "delivery_date")
-    private LocalDate deliveryDate;
 
     @ManyToMany(cascade = {CascadeType.REFRESH}, fetch = FetchType.LAZY)
     @JoinTable(
@@ -100,7 +93,6 @@ public class Book implements IEntity, Serializable {
         this.status = status;
         this.request = request;
         this.publicationDate = publicationDate;
-        this.deliveryDate = deliveryDate;
     }
 
     public Book(int id, int price, String name, String description, LocalDate publicationDate, LocalDate deliveryDate) {
@@ -109,7 +101,6 @@ public class Book implements IEntity, Serializable {
         this.name = name;
         this.description = description;
         this.publicationDate = publicationDate;
-        this.deliveryDate = deliveryDate;
 
         this.request = new Request(id, 0, this.name);
         this.status = BookStatus.OUT_STOCK;
@@ -148,7 +139,6 @@ public class Book implements IEntity, Serializable {
                 ",    status = " + status +
                 ",    requestNumber = " + //request.getNumber() +
                 ",    price = " + price +
-                ",    deliveryDate = " + deliveryDate +
                 ",    name = '" + name + '\'' +
                 ",    description ='" + description + '\'' +
                 "" +

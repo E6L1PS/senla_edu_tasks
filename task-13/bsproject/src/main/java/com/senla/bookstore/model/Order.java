@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer;
-import com.opencsv.bean.CsvBindByPosition;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -19,16 +18,14 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.Type;
 
-import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -64,6 +61,7 @@ public class Order implements IEntity {
     private List<Book> books;
 
     @Enumerated(EnumType.STRING)
+    @Type(type = "com.senla.bookstore.util.EnumTypePostgreSql")
     private OrderStatus status;
 
     @JsonDeserialize(using = LocalDateDeserializer.class)

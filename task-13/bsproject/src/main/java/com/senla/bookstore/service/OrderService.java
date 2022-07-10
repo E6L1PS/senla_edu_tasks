@@ -65,7 +65,8 @@ public class OrderService implements IOrderService {
 
     @Transactional
     public void addOrder(Customer customer, List<Integer> bookIds) {
-        Order order = new Order(customer, new ArrayList<Book>(), (Integer) bookRepository.checkPrice(bookIds));
+        Order order = new Order(customer, new ArrayList<Book>(), 300);
+               // (Integer) bookRepository.checkPrice(bookIds));
         checkBook(bookIds);
         orderRepository.create(order);
         System.out.println("Создан новый заказ");
