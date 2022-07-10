@@ -67,7 +67,7 @@ public class BookService implements IBookService {
     public void addRequest(Integer bookId) {
         Book book = bookRepository.findEntityById(bookId);
         if (book.getStatus() == BookStatus.OUT_STOCK) {
-            requestRepository.addRequest(book);
+            requestRepository.create(book);
         } else {
             System.out.println("Не удалось оставить запрос на книгу, книга " + bookId + " есть в наличии");
         }

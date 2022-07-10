@@ -60,15 +60,13 @@ public class WarehouseService implements IWarehouseService {
     @Transactional
     public void addBook(Integer bookId) {
         Book bookById = bookRepository.findEntityById(bookId);
-
-        //TODO set status in book table
-
         bookById.setStatus(BookStatus.IN_STOCK);
+        bookRepository.update(bookById);
         warehouseRepository.create(new Warehouse(bookById, LocalDate.now()));
         System.out.println("Добавлена книга '" + bookId + "' на склад, статус книги: " + bookById.getStatus());
 
         if (Boolean.parseBoolean(deletingRequests)) {
-            //TODO  requestRepository.deleteRequestsByBook(bookById);
+            requestRepository.delete(bookById);
         }
 
     }
@@ -93,14 +91,14 @@ public class WarehouseService implements IWarehouseService {
         return null;
     }
 
-//
+//TODO
 //    public List<Book> getStaleBooks(String sortType) {
 //        List<Book> staleBooks = new ArrayList<>();
 //        setStaleBooks(staleBooks);
 //        staleBooks.sort(compareStrategy.getComparator(sortType));
 //        return staleBooks;
 //    }
-//
+//TODO
 //    public void setStaleBooks(List<Book> staleBooks) {
 //        //  int numberMonthForStale = Integer.parseInt(new PropertyUtil().getPropertyValue("NUMBER_MONTHS_FOR_STALE"));
 //        List<Book> books = warehouseRepository.findAll();

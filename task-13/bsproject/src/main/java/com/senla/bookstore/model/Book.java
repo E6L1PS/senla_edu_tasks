@@ -18,7 +18,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -52,11 +51,6 @@ public class Book implements IEntity, Serializable {
     @Type(type = "com.senla.bookstore.util.EnumTypePostgreSql")
     private BookStatus status;
 
-    @OneToOne(cascade = {CascadeType.REFRESH}, fetch = FetchType.LAZY)
-    @JoinColumn(name = "request_id")
-    @CsvIgnore
-    private Request request;
-
     @JsonDeserialize(using = LocalDateDeserializer.class)
     @JsonSerialize(using = LocalDateSerializer.class)
     @CsvDate(value = "yyyy-MM-dd")
@@ -73,7 +67,6 @@ public class Book implements IEntity, Serializable {
 
     public Book() {
         this.status = BookStatus.OUT_STOCK;
-        this.request = new Request(id, 0, name);
     }
 
     @ManyToMany(cascade = {CascadeType.REFRESH}, fetch = FetchType.EAGER)
@@ -91,7 +84,6 @@ public class Book implements IEntity, Serializable {
         this.name = name;
         this.description = description;
         this.status = status;
-        this.request = request;
         this.publicationDate = publicationDate;
     }
 
@@ -101,8 +93,6 @@ public class Book implements IEntity, Serializable {
         this.name = name;
         this.description = description;
         this.publicationDate = publicationDate;
-
-        this.request = new Request(id, 0, this.name);
         this.status = BookStatus.OUT_STOCK;
     }
 
@@ -111,7 +101,6 @@ public class Book implements IEntity, Serializable {
         this.price = price;
         this.id = id;
         this.status = BookStatus.OUT_STOCK;
-        this.request = new Request(id, 0, this.name);
     }
 
     public Book(String name, LocalDate publicationDate, int price, String description, int id) {
@@ -121,27 +110,20 @@ public class Book implements IEntity, Serializable {
         this.description = description;
         this.status = BookStatus.OUT_STOCK;
         this.id = id;
-        this.request = new Request(id, 0, this.name);
-        //this.deliveryDate = deliveryDate;
     }
 
-    public Request getRequest() {
-        request.setName(name);
-        request.setId(id);
-        return request;
-    }
 
     @Override
     public String toString() {
         return "Book{" +
-                "id = " + id +
-                ",    publicationDate = " + publicationDate +
-                ",    status = " + status +
-                ",    requestNumber = " + //request.getNumber() +
-                ",    price = " + price +
-                ",    name = '" + name + '\'' +
-                ",    description ='" + description + '\'' +
-                "" +
+                "id=" + id +
+                ", price=" + price +
+                ", isbn='" + isbn + '\'' +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", status=" + status +
+                ", publicationDate=" + publicationDate +
+                ", authors=" + authors +
                 "}\n";
     }
 }

@@ -10,8 +10,6 @@ import com.senla.bookstore.util.csv.CsvReader;
 import com.senla.bookstore.util.csv.CsvWriter;
 import lombok.NoArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,8 +22,6 @@ import java.util.List;
 @NoArgsConstructor
 @Service
 public class OrderService implements IOrderService {
-
-    private static final Logger logger = LogManager.getLogger(OrderService.class);
 
     @Autowired
     private IOrderRepository orderRepository;
@@ -65,8 +61,7 @@ public class OrderService implements IOrderService {
 
     @Transactional
     public void addOrder(Customer customer, List<Integer> bookIds) {
-        Order order = new Order(customer, new ArrayList<Book>(), 300);
-               // (Integer) bookRepository.checkPrice(bookIds));
+        Order order = new Order(customer, new ArrayList<Book>(), (Integer) bookRepository.checkPrice(bookIds));
         checkBook(bookIds);
         orderRepository.create(order);
         System.out.println("Создан новый заказ");
@@ -84,7 +79,7 @@ public class OrderService implements IOrderService {
             for (int bookId : bookIds) {
                 Book bookById = bookRepository.findEntityById(i);
                 if (i == bookId && bookById.getStatus() == BookStatus.OUT_STOCK) {
-                    //requestRepository.addRequest(bookById);
+                    requestRepository.create(new Request(bookById, "text :)"));
                     System.out.println("Создан запрос на книгу " + i);
                 }
             }

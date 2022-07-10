@@ -4,6 +4,9 @@ import com.senla.bookstore.model.Book;
 import com.senla.bookstore.model.Request;
 import com.senla.bookstore.repository.interfaces.IRequestRepository;
 import org.springframework.stereotype.Component;
+
+import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Component
@@ -43,14 +46,11 @@ public class RequestRepository extends AbstractRepository<Integer, Request> impl
         return super.delete(entity);
     }
 
-    @Override
-    public void addRequest(Book book) {
-        Request req = book.getRequest();
-
-        if (req.getNumber() == 0) {
-            // requests.add(req);
-        }
-
-        req.addRequest();
+    public boolean delete(Book entity) {
+        Query q = getEntityManager().createQuery("delete FROM Request r WHERE r.book=:id");
+        q.setParameter("id", entity);
+        q.executeUpdate();
+        return true;
     }
+
 }

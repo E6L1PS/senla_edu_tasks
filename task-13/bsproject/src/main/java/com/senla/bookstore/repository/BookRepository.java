@@ -5,13 +5,12 @@ import com.senla.bookstore.repository.interfaces.IBookRepository;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 import java.sql.*;
 import java.util.List;
 
 @Component
 public class BookRepository extends AbstractRepository<Integer, Book> implements IBookRepository<Integer, Book> {
-
-    public static final String SQL_SELECT_CHECK_PRICE_BY_ID = "SELECT price FROM books WHERE id= :paramId";
 
     public BookRepository() {
         setClazz(Book.class);
@@ -49,25 +48,18 @@ public class BookRepository extends AbstractRepository<Integer, Book> implements
 
     @Override
     public Integer checkPrice(List<Integer> bookIds) {
-        Query query = getEntityManager().createQuery(SQL_SELECT_CHECK_PRICE_BY_ID);
         int sum = 0;
         for (Integer bookId : bookIds) {
-            query.setParameter("paramId", bookId);
-            ResultSet rs = (ResultSet) query.getResultList();
-            try {
-                rs.next();
-                sum += rs.getInt("price");
-            } catch (SQLException e) {
-                throw new RuntimeException(e);
-            }
+            sum += findPriceById(bookId);
         }
 
         return sum;
     }
 
-    //TODO
     @Override
     public Integer findPriceById(Integer id) {
-        return null;
+        TypedQuery<Integer> q = getEntityManager().createQuery("select price from Book b WHERE b.id=:id", Integer.class);
+        q.setParameter("id", id);
+        return q.getResultList().stream().findAny().orElse(null);
     }
 }

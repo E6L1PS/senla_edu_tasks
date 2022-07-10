@@ -35,7 +35,6 @@ import java.util.List;
 @AllArgsConstructor
 @Getter
 @Setter
-@ToString
 public class Order implements IEntity {
 
     @Id
@@ -94,5 +93,18 @@ public class Order implements IEntity {
             bookIds.add(book.getId());
         }
         return bookIds;
+    }
+
+    @Override
+    public String toString() {
+        return "Order{" +
+                "id=" + id +
+                ", price=" + price +
+                ", customer=" + customer +
+                ", employee=" + employee +
+                ", books=" + books +
+                ", status=" + status +
+                ", issueDate=" + issueDate +
+                "}\n";
     }
 }

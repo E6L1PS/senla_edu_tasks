@@ -223,7 +223,10 @@ public class Menu {
                                     warehouseController.removeBook(new Scanner(System.in).nextInt());
                                 }, null),
                                 new MenuItem("3. Показать книги со склада", () -> System.out.println(warehouseController.getWarehouseRepository().findAll()), null),
-                                new MenuItem("4. Customers", () -> System.out.println(warehouseController.getWarehouseService().getCustomerRepository().findAll()), null),
+                                new MenuItem("4. TEST", () -> {
+                                    System.out.println(warehouseController.getBookRepository().findPriceById(3));
+                                    System.out.println(warehouseController.getWarehouseService().getCustomerRepository().findAll());
+                                } , null),
                                 new MenuItem("5. Залежавшие книги", () -> System.out.println("\nВведите номер пункта"),
                                         new Menu("Залежавшие книги", new MenuItem[]{
                                                 new MenuItem("0. <--- Назад", () -> System.out.println("\nВведите номер пункта"), null),

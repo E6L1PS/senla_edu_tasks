@@ -7,15 +7,6 @@ import com.senla.bookstore.model.Request;
 import java.util.List;
 
 public interface IRequestRepository<K extends Number, T extends IEntity> extends IRepository {
-/*
-    Request getRequestById(int id);
-
-    List<Request> getRequests();
-
-    void addRequest(Book book);
-
-    void deleteRequestsByBook(Book book);
-*/
 
     List<T> findAll();
 
@@ -25,9 +16,10 @@ public interface IRequestRepository<K extends Number, T extends IEntity> extends
 
     boolean delete(T entity);
 
+    boolean delete(Book entity);
+
     boolean create(T entity);
 
     T update(T entity);
 
-    void addRequest(Book book);
 }

@@ -6,6 +6,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -31,8 +33,13 @@ public class Request implements IEntity {
 
     private String name;
 
-    @OneToOne(cascade = CascadeType.REFRESH, fetch = FetchType.LAZY, mappedBy = "request")
+    @ManyToOne(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER)
     private Book book;
+
+    public Request(Book book, String name) {
+        this.book = book;
+        this.name = name;
+    }
 
     public Request(Integer id, Integer number, String name) {
         this.id = id;

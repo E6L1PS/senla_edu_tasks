@@ -22,9 +22,9 @@ public abstract class AbstractRepository<K extends Number, T extends IEntity> {
     public final void setClazz(final Class<T> clazzToSet) {
         this.clazz = clazzToSet;
     }
+
     @SuppressWarnings("unchecked")
     public List<T> findAll() {
-        System.out.println(clazz.getName());
         return entityManager.createQuery("FROM " + clazz.getName()).getResultList();
     }
 
