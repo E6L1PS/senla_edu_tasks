@@ -50,10 +50,11 @@ public class BookRepository extends AbstractRepository<Integer, Book> implements
     }
 
     @Override
-    public Integer checkPrice(List<Integer> bookIds) {
+    public Integer checkPrice(List<Book> books) {
         int sum = 0;
-        for (Integer bookId : bookIds) {
-            sum += findPriceById(bookId);
+
+        for (Book book : books) {
+            sum += findPriceById(book.getId());
         }
 
         return sum;

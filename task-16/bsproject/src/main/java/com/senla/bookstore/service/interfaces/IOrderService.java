@@ -1,21 +1,15 @@
 package com.senla.bookstore.service.interfaces;
 
+import com.senla.bookstore.model.Book;
 import com.senla.bookstore.model.Order;
 import com.senla.bookstore.model.OrderStatus;
-import com.senla.bookstore.model.Customer;
-import com.senla.bookstore.repository.interfaces.IOrderRepository;
-import com.senla.bookstore.repository.interfaces.IRequestRepository;
 
 import java.time.LocalDate;
 import java.util.List;
 
 public interface IOrderService {
 
-    IOrderRepository getOrderRepository();
-
-    IRequestRepository getRequestRepository();
-
-    void addOrder(Customer customer, List<Integer> bookIds);
+    void addOrder(List<Book> books);
 
     void removeOrder(Integer orderId);
 
@@ -25,7 +19,7 @@ public interface IOrderService {
 
     Integer getFullPrice(LocalDate startDate, LocalDate endDate);
 
-    Integer getQuantityCompletedOrders(LocalDate startDate, LocalDate endDate);
+    Long getQuantityCompletedOrders(LocalDate startDate, LocalDate endDate);
 
     void setStatus(Integer orderId, OrderStatus orderStatus);
 

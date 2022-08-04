@@ -79,6 +79,44 @@ public class OrderRepository extends AbstractRepository<Integer, Order> implemen
     }
 
     @Override
+    public Long getQuantityCompletedOrders(LocalDate startDate, LocalDate endDate) {
+        EntityManager em = getEntityManager();
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Long> cq = cb.createQuery(Long.class);
+        Root<Order> bookRoot = cq.from(Order.class);
+
+        cq.select(cb.count(bookRoot));
+        cq.where(cb.and(
+                        cb.greaterThan(bookRoot.get("issueDate"), startDate),
+                        cb.lessThan(bookRoot.get("issueDate"), endDate),
+                        cb.equal(bookRoot.get("status"), OrderStatus.COMPLETED)
+                )
+        );
+
+
+        return em.createQuery(cq).getSingleResult();
+    }
+
+    @Override
+    public Integer getFullPrice(LocalDate startDate, LocalDate endDate) {
+        EntityManager em = getEntityManager();
+        CriteriaBuilder cb = em.getCriteriaBuilder();
+        CriteriaQuery<Integer> cq = cb.createQuery(Integer.class);
+        Root<Order> bookRoot = cq.from(Order.class);
+
+        cq.select(cb.sum(bookRoot.get("price")));
+        cq.where(cb.and(
+                        cb.greaterThan(bookRoot.get("issueDate"), startDate),
+                        cb.lessThan(bookRoot.get("issueDate"), endDate),
+                        cb.equal(bookRoot.get("status"), OrderStatus.COMPLETED)
+                )
+        );
+
+
+        return em.createQuery(cq).getSingleResult();
+    }
+
+    @Override
     public void setStatus(Integer id, OrderStatus status) {
         EntityManager em = getEntityManager();
 

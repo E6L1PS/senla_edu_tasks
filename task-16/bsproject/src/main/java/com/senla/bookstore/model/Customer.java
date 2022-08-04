@@ -1,5 +1,6 @@
 package com.senla.bookstore.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -31,6 +32,7 @@ public class Customer implements IPerson {
 
     private String name;
 
+    @JsonIgnore
     @OneToMany(cascade = CascadeType.REFRESH, fetch = FetchType.EAGER, mappedBy = "customer")
     private List<Order> orders;
 

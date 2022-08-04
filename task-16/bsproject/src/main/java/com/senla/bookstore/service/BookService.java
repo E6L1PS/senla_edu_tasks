@@ -4,7 +4,6 @@ import com.senla.bookstore.model.Author;
 import com.senla.bookstore.model.Book;
 import com.senla.bookstore.model.BookStatus;
 import com.senla.bookstore.model.Request;
-import com.senla.bookstore.model.compares.CompareStrategy;
 import com.senla.bookstore.repository.interfaces.IAuthorRepository;
 import com.senla.bookstore.repository.interfaces.IBookRepository;
 import com.senla.bookstore.repository.interfaces.IRequestRepository;
@@ -32,10 +31,6 @@ public class BookService implements IBookService {
 
     @Autowired
     private IRequestRepository requestRepository;
-
-    @Autowired
-    private CompareStrategy compareStrategy;
-
 
     @Transactional(readOnly = true)
     public List<Book> getBooks() {

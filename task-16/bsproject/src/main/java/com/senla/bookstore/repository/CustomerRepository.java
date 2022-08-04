@@ -1,12 +1,13 @@
 package com.senla.bookstore.repository;
 
 import com.senla.bookstore.model.Customer;
+import com.senla.bookstore.repository.interfaces.ICustomerRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public class CustomerRepository extends AbstractRepository<Integer, Customer> {
+public class CustomerRepository extends AbstractRepository<Integer, Customer> implements ICustomerRepository<Integer, Customer> {
 
     public CustomerRepository() {
         setClazz(Customer.class);

@@ -1,11 +1,16 @@
 package com.senla.bookstore.service;
 
-import com.senla.bookstore.model.*;
+import com.senla.bookstore.model.Book;
+import com.senla.bookstore.model.BookStatus;
+import com.senla.bookstore.model.Customer;
+import com.senla.bookstore.model.Order;
+import com.senla.bookstore.model.OrderStatus;
+import com.senla.bookstore.model.Request;
 import com.senla.bookstore.repository.interfaces.IBookRepository;
+import com.senla.bookstore.repository.interfaces.ICustomerRepository;
 import com.senla.bookstore.repository.interfaces.IOrderRepository;
 import com.senla.bookstore.repository.interfaces.IRequestRepository;
 import com.senla.bookstore.service.interfaces.IOrderService;
-import com.senla.bookstore.model.compares.CompareStrategy;
 import com.senla.bookstore.util.csv.CsvReader;
 import com.senla.bookstore.util.csv.CsvWriter;
 import lombok.NoArgsConstructor;
@@ -15,7 +20,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 @Log4j2
@@ -30,19 +34,29 @@ public class OrderService implements IOrderService {
     private IBookRepository bookRepository;
 
     @Autowired
-    private IRequestRepository requestRepository;
+    private ICustomerRepository customerRepository;
 
     @Autowired
-    private CompareStrategy compareStrategy;
+    private IRequestRepository requestRepository;
 
-    private List<Order> completedOrders = new ArrayList<>();
-
-    public IOrderRepository getOrderRepository() {
-        return orderRepository;
+    @Transactional(readOnly = true)
+    public List<Order> getSortedOrders(String sortType) {
+        return orderRepository.findAllByType(sortType);
     }
 
-    public IRequestRepository getRequestRepository() {
-        return requestRepository;
+    @Transactional(readOnly = true)
+    public List<Order> getCompletedOrders(LocalDate startDate, LocalDate endDate, String sortType) {
+        return orderRepository.findCompletedByType(startDate, endDate, sortType);
+    }
+
+    @Transactional
+    public Long getQuantityCompletedOrders(LocalDate startDate, LocalDate endDate) {
+        return orderRepository.getQuantityCompletedOrders(startDate, endDate);
+    }
+
+    @Transactional
+    public Integer getFullPrice(LocalDate startDate, LocalDate endDate) {
+        return (Integer) orderRepository.getFullPrice(startDate, endDate);
     }
 
     @Transactional
@@ -51,9 +65,10 @@ public class OrderService implements IOrderService {
     }
 
     @Transactional
-    public void addOrder(Customer customer, List<Integer> bookIds) {
-        Order order = new Order(customer, new ArrayList<Book>(), (Integer) bookRepository.checkPrice(bookIds));
-        checkBook(bookIds);
+    public void addOrder(List<Book> books) {
+        //hardcode customer
+        Order order = new Order((Customer) customerRepository.findEntityById(1), books, (Integer) bookRepository.checkPrice(books));
+        checkBook(books);
         orderRepository.create(order);
         System.out.println("Создан новый заказ");
     }
@@ -65,63 +80,16 @@ public class OrderService implements IOrderService {
     }
 
     @Transactional
-    public void checkBook(List<Integer> bookIds) {
+    public void checkBook(List<Book> books) {
         for (int i = 0; i < bookRepository.findAll().size(); i++) {
-            for (int bookId : bookIds) {
+            for (Book book : books) {
                 Book bookById = bookRepository.findEntityById(i);
-                if (i == bookId && bookById.getStatus() == BookStatus.OUT_STOCK) {
+                if (i == book.getId() && bookById.getStatus() == BookStatus.OUT_STOCK) {
                     requestRepository.create(new Request(bookById, "text :)"));
                     System.out.println("Создан запрос на книгу " + i);
                 }
             }
         }
-    }
-
-    @Transactional(readOnly = true)
-    public List<Order> getSortedOrders(String sortType) {
-        return orderRepository.findAllByType(sortType);
-    }
-
-    @Transactional(readOnly = true)
-    public List<Order> getCompletedOrders(LocalDate startDate, LocalDate endDate, String sortType) {
-        return orderRepository.findCompletedByType(startDate, endDate, sortType);
-
-       /* List<Order> rangeCompletedOrders = new ArrayList<>();
-
-        for (Order order : completedOrders) {
-            if (order.getIssueDate().isAfter(startDate) && order.getIssueDate().isBefore(endDate)) {
-                rangeCompletedOrders.add(order);
-            }
-        }
-
-        rangeCompletedOrders.sort(compareStrategy.getComparator(sortType));
-        return rangeCompletedOrders;*/
-    }
-
-    @Transactional
-    public Integer getFullPrice(LocalDate startDate, LocalDate endDate) {
-        Integer sum = 0;
-
-        for (Order order : completedOrders) {
-            if (order.getIssueDate().isAfter(startDate) && order.getIssueDate().isBefore(endDate)) {
-                sum += order.getPrice();
-            }
-        }
-
-        return sum;
-    }
-
-    @Transactional
-    public Integer getQuantityCompletedOrders(LocalDate startDate, LocalDate endDate) {
-        Integer sum = 0;
-
-        for (Order order : completedOrders) {
-            if (order.getIssueDate().isAfter(startDate) && order.getIssueDate().isBefore(endDate)) {
-                sum++;
-            }
-        }
-
-        return sum;
     }
 
     public void exportOrders() {

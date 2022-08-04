@@ -3,12 +3,10 @@ package com.senla.bookstore.service;
 import com.senla.bookstore.model.Book;
 import com.senla.bookstore.model.BookStatus;
 import com.senla.bookstore.model.Warehouse;
-import com.senla.bookstore.repository.CustomerRepository;
 import com.senla.bookstore.repository.interfaces.IBookRepository;
 import com.senla.bookstore.repository.interfaces.IRequestRepository;
 import com.senla.bookstore.repository.interfaces.IWarehouseRepository;
 import com.senla.bookstore.service.interfaces.IWarehouseService;
-import com.senla.bookstore.model.compares.CompareStrategy;
 import lombok.NoArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,29 +31,11 @@ public class WarehouseService implements IWarehouseService {
     @Autowired
     private IRequestRepository requestRepository;
 
-    @Autowired
-    private CustomerRepository customerRepository;
-
-    public CustomerRepository getCustomerRepository() {
-        return customerRepository;
-    }
-
-    @Autowired
-    private CompareStrategy compareStrategy;
-
     @Value("${deletingRequests}")
     private String deletingRequests;
 
     @Value("${numberMonthForStale}")
     private String numberMonthForStale;
-
-    public IWarehouseRepository getWarehouseRepository() {
-        return warehouseRepository;
-    }
-
-    public IBookRepository getBookRepository() {
-        return bookRepository;
-    }
 
     @Transactional(readOnly = true)
     public List<Warehouse> getWarehouse() {
@@ -65,6 +45,11 @@ public class WarehouseService implements IWarehouseService {
     @Transactional(readOnly = true)
     public List<Warehouse> getSortedWarehouse(String key) {
         return warehouseRepository.findAllByType(key);
+    }
+
+    @Transactional
+    public List<Warehouse> getStaleBooks(String sortType) {
+        return warehouseRepository.findStaleBooks(sortType, numberMonthForStale);
     }
 
     @Transactional
@@ -95,27 +80,6 @@ public class WarehouseService implements IWarehouseService {
         System.out.println("Снята книга '" + bookId + "' со склада, статус книги: " + bookRepository.findEntityById(bookId).getStatus());
     }
 
-    @Override
-    public List<Warehouse> getStaleBooks(String sortType) {/*
-        List<Book> staleBooks = new ArrayList<>();
-        setStaleBooks(staleBooks);
-        staleBooks.sort(compareStrategy.getComparator(sortType));*/
-        return warehouseRepository.findStaleBooks(sortType, numberMonthForStale);
-    }
-
-    public void setStaleBooks(List<Book> staleBooks) {
-        /*
-        //  int numberMonthForStale = Integer.parseInt(new PropertyUtil().getPropertyValue("NUMBER_MONTHS_FOR_STALE"));
-        List<Book> books = warehouseRepository.findAll();
-        for (Book book : books) {
-            if (book.getDeliveryDate() != null) {
-                if (LocalDate.now().minusMonths(Integer.parseInt(numberMonthForStale)).isAfter(book.getDeliveryDate())) {
-                    staleBooks.add(book);
-                }
-            }
-        }*/
-    }
-
     public String getNumberMonthForStale() {
         return numberMonthForStale;
     }
@@ -123,6 +87,5 @@ public class WarehouseService implements IWarehouseService {
     public void setNumberMonthForStale(String numberMonthForStale) {
         this.numberMonthForStale = numberMonthForStale;
     }
-
 
 }

@@ -15,6 +15,10 @@ public interface IOrderRepository<K extends Number, T extends IEntity> extends I
 
     List<T> findCompletedByType (LocalDate startDate, LocalDate endDate, String sortType);
 
+    Long getQuantityCompletedOrders(LocalDate startDate, LocalDate endDate);
+
+    K getFullPrice(LocalDate startDate, LocalDate endDate);
+
     Order findEntityById(K id);
 
     boolean delete(K id);
@@ -26,5 +30,4 @@ public interface IOrderRepository<K extends Number, T extends IEntity> extends I
     T update(T entity);
 
     void setStatus(K id, OrderStatus status);
-
 }

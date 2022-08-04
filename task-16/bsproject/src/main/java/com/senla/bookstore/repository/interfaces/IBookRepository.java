@@ -23,7 +23,7 @@ public interface IBookRepository<K extends Number, T extends IEntity> {
 
     T update(T entity);
 
-    K checkPrice(List<K> bookIds);
+    K checkPrice(List<T> books);
 
     String findDescriptionById(K id);
 

@@ -1,7 +1,6 @@
 package com.senla.bookstore.dto;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.senla.bookstore.model.Book;
 import com.senla.bookstore.model.OrderStatus;
 import lombok.Data;
 
@@ -14,8 +13,10 @@ public class OrderDTO {
     private Integer id;
     private Integer price;
     private OrderStatus status;
-    private List<Book> books;
+    private List<Integer> booksIds;
 
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDate issueDate;
+
+
 }
