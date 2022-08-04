@@ -87,23 +87,6 @@ public class OrderRepository extends AbstractRepository<Integer, Order> implemen
         query.setParameter("status", status);
         query.setParameter("issueDate", LocalDate.now());
         query.executeUpdate();
-/*
-        CriteriaBuilder cb = getEntityManager().getCriteriaBuilder();
-        CriteriaQuery<Order> cq = cb.createQuery(Order.class);
-        Root<Order> order = cq.from(Order.class);
-
-        cq.select(order);
-        cq.
-
-        if (orderStatus.equals(OrderStatus.COMPLETED)) {
-            Order orderById = orderRepository.findEntityById(orderId);
-            if (orderById.getBookIds().stream().allMatch((x) -> bookRepository.findEntityById(x).getStatus() == BookStatus.IN_STOCK)) {
-                completedOrders.add(orderById);
-                orderById.setStatus(orderStatus);
-                orderById.setIssueDate(LocalDate.now());
-            } else {
-                System.out.println("Заказ не может быть завершен, проверьте статус книги");
-            }
-        }*/
     }
+
 }

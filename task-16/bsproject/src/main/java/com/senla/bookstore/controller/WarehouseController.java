@@ -1,8 +1,6 @@
 package com.senla.bookstore.controller;
 
 import com.senla.bookstore.model.Warehouse;
-import com.senla.bookstore.repository.interfaces.IBookRepository;
-import com.senla.bookstore.repository.interfaces.IWarehouseRepository;
 import com.senla.bookstore.service.interfaces.IWarehouseService;
 import lombok.NoArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -24,18 +22,6 @@ public class WarehouseController {
 
     @Autowired
     private IWarehouseService warehouseService;
-
-    public IWarehouseService getWarehouseService() {
-        return warehouseService;
-    }
-
-    public IWarehouseRepository getWarehouseRepository() {
-        return warehouseService.getWarehouseRepository();
-    }
-
-    public IBookRepository getBookRepository() {
-        return warehouseService.getBookRepository();
-    }
 
 
     @GetMapping

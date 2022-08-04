@@ -22,6 +22,15 @@ public class WebConfig implements WebMvcConfigurer {
         this.applicationContext = applicationContext;
     }
 
+    @Bean
+    public InternalResourceViewResolver defaultViewResolver() {
+        return new InternalResourceViewResolver();
+    }
+
+    @Override
+    public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
+        configurer.mediaType("json", MediaType.APPLICATION_JSON);
+    }
 /*
     @Override
     public void configureMessageConverters(List<HttpMessageConverter<?>> converters) {
@@ -34,56 +43,5 @@ public class WebConfig implements WebMvcConfigurer {
 
     }
 */
-    @Override
-    public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
-        configurer.mediaType("json", MediaType.APPLICATION_JSON);
-    }
 
-    @Bean
-    public InternalResourceViewResolver defaultViewResolver() {
-        return new InternalResourceViewResolver();
-    }
-   /* @Bean
-    public SpringResourceTemplateResolver templateResolver() {
-        SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
-        templateResolver.setApplicationContext(applicationContext);
-        templateResolver.setPrefix("/WEB-INF/views/");
-        templateResolver.setSuffix(".html");
-        return templateResolver;
-    }
-
-    @Bean
-    public SpringTemplateEngine templateEngine() {
-        SpringTemplateEngine templateEngine = new SpringTemplateEngine();
-        templateEngine.setTemplateResolver(templateResolver());
-        templateEngine.setEnableSpringELCompiler(true);
-        return templateEngine;
-    }
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/r/**").addResourceLocations("classpath:/static/r/");
-        registry.addResourceHandler("/favicon.ico").addResourceLocations("classpath:/static/r/favicon.ico");
-    }
-    @Override
-    public void addViewControllers(ViewControllerRegistry registry) {
-        registry.addViewController("/").setViewName("forward:/r/diploma/index.html");
-        registry.setOrder(Ordered.HIGHEST_PRECEDENCE);
-        WebMvcConfigurer.super.addViewControllers(registry);
-    }
-    @Override
-    public void configureViewResolvers(ViewResolverRegistry registry) {
-        ThymeleafViewResolver resolver = new ThymeleafViewResolver();
-        resolver.setTemplateEngine(templateEngine());
-        registry.viewResolver(resolver);
-    }
-*/
-  /*  @Override
-    public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
-        configurer.mediaType("json", MediaType.APPLICATION_JSON);
-    } 
-
-    @Bean
-    public InternalResourceViewResolver defaultViewResolver() {
-        return new InternalResourceViewResolver();
-    }*/
 }
