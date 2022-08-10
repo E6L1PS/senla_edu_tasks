@@ -1,0 +1,37 @@
+-------------------------------------------------------------------------------
+Test set: com.senla.bookstore.service.BookServiceTest
+-------------------------------------------------------------------------------
+Tests run: 6, Failures: 0, Errors: 3, Skipped: 0, Time elapsed: 1.055 s <<< FAILURE! - in com.senla.bookstore.service.BookServiceTest
+getSortedBooks  Time elapsed: 0.968 s  <<< ERROR!
+java.lang.NullPointerException
+	at com.senla.bookstore.service.BookServiceTest.getSortedBooks(BookServiceTest.java:43)
+
+getDescription  Time elapsed: 0.006 s  <<< ERROR!
+java.lang.NullPointerException
+	at com.senla.bookstore.service.BookServiceTest.getDescription(BookServiceTest.java:55)
+
+getBooks  Time elapsed: 0.013 s  <<< ERROR!
+org.mockito.exceptions.misusing.InvalidUseOfMatchersException: 
+
+Misplaced or misused argument matcher detected here:
+
+-> at com.senla.bookstore.service.BookServiceTest.getDescription(BookServiceTest.java:54)
+
+You cannot use argument matchers outside of verification or stubbing.
+Examples of correct usage of argument matchers:
+    when(mock.get(anyInt())).thenReturn(null);
+    doThrow(new RuntimeException()).when(mock).someVoidMethod(any());
+    verify(mock).someMethod(contains("foo"))
+
+This message may appear after an NullPointerException if the last matcher is returning an object 
+like any() but the stubbed method signature expect a primitive argument, in this case,
+use primitive alternatives.
+    when(mock.get(any())); // bad use, will raise NPE
+    when(mock.get(anyInt())); // correct usage use
+
+Also, this error might show up because you use argument matchers with methods that cannot be mocked.
+Following methods *cannot* be stubbed/verified: final/private/equals()/hashCode().
+Mocking methods declared on non-public parent classes is not supported.
+
+	at com.senla.bookstore.service.BookServiceTest.getBooks(BookServiceTest.java:30)
+
