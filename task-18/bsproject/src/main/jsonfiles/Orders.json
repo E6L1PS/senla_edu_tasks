@@ -1,0 +1,1 @@
+[{"id":1,"price":3540,"customer":null,"bookIds":[1,2],"status":"NEW","issueDate":[2010,9,12]},{"id":2,"price":4530,"customer":null,"bookIds":[1,6],"status":"NEW","issueDate":[2022,6,28]},{"id":3,"price":1200,"customer":null,"bookIds":[1],"status":"NEW","issueDate":[2022,6,28]}]
