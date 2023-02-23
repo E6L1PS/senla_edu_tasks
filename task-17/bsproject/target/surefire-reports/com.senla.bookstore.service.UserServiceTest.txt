@@ -1,0 +1,8 @@
+-------------------------------------------------------------------------------
+Test set: com.senla.bookstore.service.UserServiceTest
+-------------------------------------------------------------------------------
+Tests run: 2, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.001 s <<< FAILURE! - in com.senla.bookstore.service.UserServiceTest
+findByUsername  Time elapsed: 0 s  <<< ERROR!
+java.lang.NullPointerException
+	at com.senla.bookstore.service.UserServiceTest.findByUsername(UserServiceTest.java:16)
+
